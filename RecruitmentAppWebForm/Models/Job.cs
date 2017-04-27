@@ -9,10 +9,9 @@ namespace RecruitmentAppWebForm.Models
     {
         public int job_id { get; set; }
         public int company_id { get; set; }
-        public string company_name { get; set; }
         public string position { get; set; }
+        public string company_name { get; set; }
         public string category { get; set; }
-        public string zip { get; set; }
         public int emp_id { get; set; }
         public int salary_min { get; set; }
         public int salary_max { get; set; }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RecruitmentAppWebForm.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +15,26 @@ namespace RecruitmentAppWebForm
         {
 
         }
+
+        protected void searchJobs(object sender, EventArgs e)
+        {
+            JobsDB jobsDB = new JobsDB();
+
+            string keywordsString = keywords.Text;
+            string[] keywordsArray = keywordsString.Split(' ');
+
+            
+
+
+
+            jobsDB.
+
+
+        }
+
+
+
+
+
     }
 }

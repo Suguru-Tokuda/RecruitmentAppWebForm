@@ -403,6 +403,7 @@
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobsDB.cs" />
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
