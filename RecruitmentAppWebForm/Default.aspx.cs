@@ -18,18 +18,15 @@ namespace RecruitmentAppWebForm
 
         protected void searchJobs(object sender, EventArgs e)
         {
-            JobsDB jobsDB = new JobsDB();
-
             string keywordsString = keywords.Text;
             string[] keywordsArray = keywordsString.Split(' ');
 
+            List<Job> jobList = JobsDB.searchJobs(keywordsArray, location.Text);
+
+            Session["jobList"] = jobList;
+
+            Response.Redirect("", false);
             
-
-
-
-            jobsDB.
-
-
         }
 
 

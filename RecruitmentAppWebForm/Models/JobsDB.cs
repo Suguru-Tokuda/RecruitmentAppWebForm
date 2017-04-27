@@ -13,7 +13,14 @@ namespace RecruitmentAppWebForm.Models
         public static List<Job> searchJobs(string[] keywords, string location)
         {
             List<Job> retVal = new List<Job>();
-            string sql = "SELECT * FROM jobs j JOIN companies c ON j.company_id = c.company_id"
+            string sql;
+
+            if (keywords.Equals("") && location.Equals(""))
+            {
+                sql = "SELECT * FROM jobs j JOIN companies c. ON j.company_id = c.company_id";
+            }
+
+            sql = "SELECT * FROM jobs j JOIN companies c ON j.company_id = c.company_id"
                 + "WHERE j.position LIKE '" + keywords[0] + "' "
                 + "OR j.description LIKE '" + keywords[0] + "' "
                 + "OR c.company_name LIKE '" + keywords[0] + "' ";
