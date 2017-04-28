@@ -19,13 +19,27 @@ namespace RecruitmentAppWebForm
         protected void searchJobs(object sender, EventArgs e)
         {
             string keywordsString = keywords.Text;
-            string[] keywordsArray = keywordsString.Split(' ');
+            string[] keywordsArray;
+            if (keywordsString.IndexOf(" ") != -1)
+            {
+                keywordsArray = keywordsString.Split(' ');
+            } else
+            {
+                keywordsArray = new string[1];
+                keywordsArray[0] = keywordsString;
+            }
+
 
             List<Job> jobList = JobsDB.searchJobs(keywordsArray, location.Text);
 
-            Session["jobList"] = jobList;
-
-            Response.Redirect("", false);
+            if (jobList.Count() != 0)
+            {
+                Session["jobList"] = jobList;
+                Response.Redirect("", false);
+            } else
+            {
+                sqlErrorMessage.Text = "No result, try again!";
+            }
             
         }
 
