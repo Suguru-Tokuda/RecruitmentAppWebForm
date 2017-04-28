@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecruitmentAppWebForm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,13 @@ namespace RecruitmentAppWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            List<Job> jobList = new List<Job>();
+            jobList = (List<Job>)Session["jobList"];
+            lstViewJobs.DataSource = jobList;
+            lstViewJobs.DataBind();
 
         }
+
+
     }
 }
