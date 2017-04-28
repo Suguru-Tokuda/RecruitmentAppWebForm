@@ -20,30 +20,30 @@ namespace RecruitmentAppWebForm.Models
 
             if (keywords.Equals("") && location.Equals(""))
             {
-                sql = "SELECT * FROM jobs j JOIN companies c. ON j.company_id = c.company_id";
+                sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
             }
 
-            sql = "SELECT * FROM jobs j JOIN companies c ON j.company_id = c.company_id"
-                + "WHERE j.position LIKE '" + keywords[0] + "' "
-                + "OR j.description LIKE '" + keywords[0] + "' "
-                + "OR c.company_name LIKE '" + keywords[0] + "' ";
+            sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
+                + "WHERE j.position LIKE '%" + keywords[0] + "%' "
+                + "OR j.description LIKE '%" + keywords[0] + "%' "
+                + "OR c.company_name LIKE '%" + keywords[0] + "%' ";
 
             if (keywords.Length < 1)
             {
                 for (int i = 1; i < keywords.Length; i++)
                 {
-                    string tempSql = "OR j.position LIKE '" + keywords[i] + "' "
-                                     + "OR j.description LIKE '" + keywords[i] + "' "
-                                     + "OR c.company_name LIKE '" + keywords[i] + "' ";
+                    string tempSql = "OR j.position LIKE '%" + keywords[i] + "%' "
+                                     + "OR j.description LIKE '%" + keywords[i] + "%' "
+                                     + "OR c.company_name LIKE '%" + keywords[i] + "%' ";
                     sql += tempSql;
                 }
             }
 
             if (location != null)
             {
-                sql += "AND c.city LIKE '" + location + "' "
-                    + "OR c.state LIKE " + location + "' "
-                    + "OR c.zip = '" + location + "' ";
+                sql += "AND c.city LIKE '%" + location + "%' "
+                    + "OR c.state LIKE '%" + location + "%' "
+                    + "OR c.zip = '%" + location + "%' ";
             }
 
             using (SqlConnection con = new SqlConnection(getConnectionString()))
@@ -68,7 +68,6 @@ namespace RecruitmentAppWebForm.Models
                         job.qualification = dr["qualification"].ToString();
                         job.posting_date = Convert.ToDateTime(dr["posting_date"].ToString());
                         job.filled = Convert.ToBoolean(dr["filled"].ToString());
-
                         retVal.Add(job);
                     }
                     dr.Close();
