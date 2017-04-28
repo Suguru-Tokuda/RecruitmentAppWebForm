@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Web;
 
 namespace RecruitmentAppWebForm.Models
 {
+    [DataObject(true)]
     public class JobsDB
     {
+        [DataObjectMethod(DataObjectMethodType.Select)]
 
         public static List<Job> searchJobs(string[] keywords, string location)
         {
