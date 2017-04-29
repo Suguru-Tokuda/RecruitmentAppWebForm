@@ -35,7 +35,7 @@ namespace RecruitmentAppWebForm
             if (jobList.Count() != 0)
             {
                 Session["jobList"] = jobList;
-                Response.Redirect("", false);
+                Response.Redirect("JobListing.aspx", false);
             } else
             {
                 sqlErrorMessage.Text = "No result, try again!";
