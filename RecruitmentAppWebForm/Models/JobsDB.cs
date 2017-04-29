@@ -17,18 +17,20 @@ namespace RecruitmentAppWebForm.Models
         {
             List<Job> retVal = new List<Job>();
             string sql;
-
+            //Checks for empty keywords and retrieves all results for empty ones
             if (keywords.Length == 0 && location.Equals(""))
             {
                 sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
             }
-
+            else { 
             sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
                 + "WHERE j.position LIKE '%" + keywords[0] + "%' "
                 + "OR j.description LIKE '%" + keywords[0] + "%' "
                 + "OR c.company_name LIKE '%" + keywords[0] + "%' ";
+            }
 
-            if (keywords.Length < 1)
+            //Checks for other keywords or length
+            if (keywords.Length > 1)
             {
                 for (int i = 1; i < keywords.Length; i++)
                 {

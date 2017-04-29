@@ -24,11 +24,16 @@ namespace RecruitmentAppWebForm
             Session["keywords"] = keywordsString;
             Session["location"] = location.Text;
 
-
+            //Splits String into string array
             if (keywordsString.IndexOf(" ") != -1)
             {
                 keywordsArray = keywordsString.Split(' ');
-            } else
+            } else if((keywordsString=="") || (keywordsString.Trim() == ""))
+            {
+                //Do nothing if we have empty string
+                keywordsArray =  new string[0];
+            }
+            else
             {
                 keywordsArray = new string[1];
                 keywordsArray[0] = keywordsString;

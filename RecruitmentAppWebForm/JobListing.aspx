@@ -7,7 +7,7 @@
                    <td>
                        Job Name
                    </td>
-                    <asp:TextBox ID="Customer Name" Text= '<%# Eval("company_name") %>' visible="true" runat="server"/>
+                    <asp:TextBox ID="CustName" Text= '<%# Eval("company_name") %>' visible="true" runat="server"/>
                 </tr>
             </table>
         </ItemTemplate>
