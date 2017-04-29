@@ -21,5 +21,7 @@ namespace RecruitmentAppWebForm.Models
         public string qualification { get; set; }
         public DateTime posting_date { get; set; }
         public bool filled { get; set; }
+        public string jobCity { get; set; }
+        public string jobState { get; set; }
     }
 }

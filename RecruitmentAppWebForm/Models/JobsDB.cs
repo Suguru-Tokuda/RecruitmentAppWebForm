@@ -20,10 +20,10 @@ namespace RecruitmentAppWebForm.Models
             //Checks for empty keywords and retrieves all results for empty ones
             if (keywords.Length == 0 && location.Equals(""))
             {
-                sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
+                sql = "SELECT DISTINCT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
             }
             else { 
-            sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
+            sql = "SELECT  DISTINCT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
                 + "WHERE j.position LIKE '%" + keywords[0] + "%' "
                 + "OR j.description LIKE '%" + keywords[0] + "%' "
                 + "OR c.company_name LIKE '%" + keywords[0] + "%' ";
@@ -62,6 +62,7 @@ namespace RecruitmentAppWebForm.Models
                         job.company_id = Convert.ToInt32(dr["company_id"].ToString());
                         job.company_name = dr["company_name"].ToString();
                         job.category = dr["category"].ToString();
+                        job.position = dr["position"].ToString();
                         job.emp_id = Convert.ToInt32(dr["emp_id"].ToString());
                         job.salary_min = Convert.ToInt32(dr["salary_min"].ToString());
                         job.salary_max = Convert.ToInt32(dr["salary_max"].ToString());
@@ -70,6 +71,8 @@ namespace RecruitmentAppWebForm.Models
                         job.qualification = dr["qualification"].ToString();
                         job.posting_date = Convert.ToDateTime(dr["posting_date"].ToString());
                         job.filled = Convert.ToBoolean(dr["filled"].ToString());
+                        job.jobCity = dr["city"].ToString();
+                        job.jobState = dr["state"].ToString();
                         retVal.Add(job);
                     }
                     dr.Close();

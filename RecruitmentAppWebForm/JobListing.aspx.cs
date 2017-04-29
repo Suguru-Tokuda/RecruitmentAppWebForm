@@ -14,8 +14,10 @@ namespace RecruitmentAppWebForm
         {
             List<Job> jobList = new List<Job>();
             jobList = (List<Job>)Session["jobList"];
-            lstViewJobs.DataSource = jobList;
-            lstViewJobs.DataBind();
+            frmViewJobs.DataSource = null;
+            frmViewJobs.DataSource = jobList;
+            frmViewJobs.DataBind();
+
 
         }
 
