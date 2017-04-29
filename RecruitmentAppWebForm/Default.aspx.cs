@@ -13,13 +13,18 @@ namespace RecruitmentAppWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         protected void searchJobs(object sender, EventArgs e)
         {
             string keywordsString = keywords.Text;
             string[] keywordsArray;
+
+            Session["keywords"] = keywordsString;
+            Session["location"] = location.Text;
+
+
             if (keywordsString.IndexOf(" ") != -1)
             {
                 keywordsArray = keywordsString.Split(' ');
@@ -38,7 +43,7 @@ namespace RecruitmentAppWebForm
                 Response.Redirect("JobListing.aspx", false);
             } else
             {
-                sqlErrorMessage.Text = "No result, try again!";
+                sqlErrorMessage.Text = "No result";
             }
             
         }

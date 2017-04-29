@@ -18,7 +18,7 @@ namespace RecruitmentAppWebForm.Models
             List<Job> retVal = new List<Job>();
             string sql;
 
-            if (keywords.Equals("") && location.Equals(""))
+            if (keywords.Length == 0 && location.Equals(""))
             {
                 sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
             }
