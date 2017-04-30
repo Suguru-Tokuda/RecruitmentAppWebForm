@@ -13,6 +13,33 @@ namespace RecruitmentAppWebForm {
     public partial class WebForm1 {
         
         /// <summary>
+        /// keywords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox keywords;
+        
+        /// <summary>
+        /// location control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox location;
+        
+        /// <summary>
+        /// sqlErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sqlErrorMessage;
+        
+        /// <summary>
         /// frmViewJobs control.
         /// </summary>
         /// <remarks>
