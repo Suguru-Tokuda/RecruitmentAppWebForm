@@ -3,31 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%--Search Bar--%>
 
-<%--    <div class="row">
+    <div class="form-horizontal">
         <div class="form-group">
-            <div class="center">
-                <div class="col-md-4 col-sm-4 col-xs-4">
-                    <asp:TextBox runat="server" ID="keywords" placeholder="Keywords: Job title, keywords, or company" CssClass="form-control " />
+            <div class="col-md-offset-2 col-sm-offset-2 xs-offset-2">
+                <%--<div class="row">--%>
+                <div class="col-md-4">
+                    <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control" />
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-2">
-                    <asp:TextBox runat="server" ID="location" placeholder="Location" CssClass="form-control" />
+                <div class="col-md-3">
+                    <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" />
                 </div>
-                <asp:Button runat="server" Text="Search" CssClass="btn btn-primary col-md-1 col-sm-1 col-xs-1" />
-            </div>
-        </div>
-    </div>--%>
-
-        <div class="row">
-        <div class="form-group">
-            <div class="center">
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control col-md-6" />
+                <div class="col-md-3">
+                    <div class="col-m2">
+                        <asp:Button runat="server" Text="Search" CssClass="btn btn-primary" OnClick="searchJobs" />
+                    </div>
+                    <div class="co-md-1">
+                        <asp:Label runat="server" ID="Label1" CssClass="text-danger" Display="dynamic" />
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                    <asp:TextBox runat="server" ID="location" placeholder="Location" CssClass="form-control" />
-                </div>
-                <asp:Button runat="server" Text="Search" CssClass="btn btn-primary col-md-2 col-sm-2 col-xs-2" OnClick="searchJobs" />
-                <asp:Label runat="server" ID="Label1" CssClass="text-danger" Display="dynamic" />
+                <%--</div>--%>
             </div>
         </div>
     </div>

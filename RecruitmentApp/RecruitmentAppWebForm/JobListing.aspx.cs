@@ -54,7 +54,7 @@ namespace RecruitmentAppWebForm
             }
             else
             {
-                sqlErrorMessage.Text = "No result";
+                sqlErrorMessage.Text = "No results";
             }
 
         }

@@ -1,6 +1,9 @@
 ﻿using RecruitmentAppWebForm.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -25,6 +28,14 @@ namespace RecruitmentAppWebForm
                     Session["loggedIn"] = true;
                 }
             }
+        }
+
+        protected void resumeUploadBtn_Click(object sender, EventArgs e)
+        {
+            //get applicant_id from the session
+            string applicant_id = (string)HttpContext.Current.Session["applicant_id"];
+            //put data into the DB
+            ResumesDB.uploadResume(resumeData, applicant_id);
         }
     }
 }

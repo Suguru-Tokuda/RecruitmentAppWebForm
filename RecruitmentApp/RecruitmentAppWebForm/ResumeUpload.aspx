@@ -10,7 +10,7 @@
             <asp:FileUpload ID="resumeData" runat="server" CssClass="form-control" />
         </div>
         <div class="row">
-            <asp:Button runat="server" ID="resumeUploadBtn" CssClass="btn btn-primary" Text="Upload" />
+            <asp:Button runat="server" ID="resumeUploadBtn" CssClass="btn btn-primary" Text="Upload" OnClick="resumeUploadBtn_Click" />
         </div>
     </div>
 </asp:Content>

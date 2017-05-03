@@ -416,6 +416,7 @@
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobsDB.cs" />
     <Compile Include="Models\Resume.cs" />
+    <Compile Include="Models\ResumesDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResumeUpload.aspx.cs">
       <DependentUpon>ResumeUpload.aspx</DependentUpon>

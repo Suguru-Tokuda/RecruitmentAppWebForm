@@ -56,21 +56,19 @@ namespace RecruitmentAppWebForm.Models
         public static List<Job> searchJobs(string[] keywords, string location)
         {
             List<Job> retVal = new List<Job>();
-            string sql;
+            string sql = null;
             //Checks for empty keywords and retrieves all results for empty ones
             if (keywords.Length == 0 && location.Equals(""))
             {
                 sql = "SELECT DISTINCT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id ";
             }
-            else { 
-            sql = "SELECT  DISTINCT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
+            else if (keywords.Length > 0) { 
+            sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
                 + "WHERE j.position LIKE '%" + keywords[0] + "%' "
                 + "OR j.description LIKE '%" + keywords[0] + "%' "
                 + "OR c.company_name LIKE '%" + keywords[0] + "%' ";
             }
-
-            //Checks for other keywords or length
-            if (keywords.Length > 1)
+            else if (keywords.Length > 1)
             {
                 for (int i = 1; i < keywords.Length; i++)
                 {
@@ -79,13 +77,26 @@ namespace RecruitmentAppWebForm.Models
                                      + "OR c.company_name LIKE '%" + keywords[i] + "%' ";
                     sql += tempSql;
                 }
-            }
-
-            if (location != null)
+            } else if (keywords.Length == 0 && !location.Equals(""))
+            {
+                sql = "SELECT * FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id "
+                      + "WHERE c.city LIKE '%" + location + "%' "
+                      + "OR c.state LIKE '%" + location + "%' "
+                      + "OR c.zip = '" + location + "'; ";
+            } else if (keywords.Length > 1)
+            {
+                for (int i = 1; i < keywords.Length; i++)
+                {
+                    string tempSql = "OR j.position LIKE '%" + keywords[i] + "%' "
+                                     + "OR j.description LIKE '%" + keywords[i] + "%' "
+                                     + "OR c.company_name LIKE '%" + keywords[i] + "%' ";
+                    sql += tempSql;
+                }
+            } else if (!location.Equals(""))
             {
                 sql += "AND c.city LIKE '%" + location + "%' "
                     + "OR c.state LIKE '%" + location + "%' "
-                    + "OR c.zip = '%" + location + "%' ";
+                    + "OR c.zip = '" + location + "' ";
             }
 
             using (SqlConnection con = new SqlConnection(getConnectionString()))
