@@ -22,7 +22,7 @@ namespace RecruitmentAppWebForm
         }
         protected void searchJobs(object sender, EventArgs e)
         {
-            string keywordsString = keywords.Text;
+            string keywordsString = keywords.Text.Trim();
             string[] keywordsArray;
 
             Session["keywords"] = keywordsString;

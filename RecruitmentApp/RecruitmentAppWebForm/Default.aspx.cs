@@ -32,7 +32,7 @@ namespace RecruitmentAppWebForm
             string keywordsString = keywords.Text;
             string[] keywordsArray;
 
-            Session["keywords"] = keywordsString;
+            Session["keywords"] = keywordsString.Trim();
             Session["location"] = location.Text;
 
             //Splits String into string array
