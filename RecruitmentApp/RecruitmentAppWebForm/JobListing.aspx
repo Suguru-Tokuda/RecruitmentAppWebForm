@@ -30,9 +30,10 @@
     <div class="row">
         <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
     </div>
-
+    
             <div class="col-md-6 ">
-                     <asp:ListView ID="lstViewJobs" CssClass="table table-bordered table-condensed" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
+                <div class=" table table-bordered table-condensed">
+                     <asp:ListView ID="lstViewJobs"  OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
 
                         <%--                        <AlternatingItemTemplate>
                             <div class="altRow">
@@ -89,7 +90,7 @@
                             <hr />
                         </ItemTemplate>
                     </asp:ListView>
-                </div>
+                </div></div>
 
             <div class="col-md-6 ">
                
