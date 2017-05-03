@@ -55,8 +55,8 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
 
         }
-        [DataObjectMethod(DataObjectMethodType.Select)]
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public static List<Job> searchJobs(string[] keywords, string location)
         {
 
@@ -130,6 +130,28 @@ namespace RecruitmentAppWebForm.Models
                         job.jobCity = dr["city"].ToString();
                         job.jobState = dr["state"].ToString();
                         retVal.Add(job);
+                    }
+                    dr.Close();
+                }
+            }
+            return retVal;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static string getJobTitle(int job_id)
+        {
+            string retVal = null;
+            string sql = "SELECT * FROM jobs WHERE job_id = " + job_id;
+
+            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        retVal = dr["job_id"].ToString();
                     }
                     dr.Close();
                 }

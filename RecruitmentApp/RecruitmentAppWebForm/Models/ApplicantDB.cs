@@ -1,5 +1,8 @@
-﻿using System;
+﻿using RecruitmentAppWebForm.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,9 +12,9 @@ namespace RecruitmentAppWebForm.Models
 {
     public class ApplicantDB
     {
-        public static Applicant getApplicant(int applicant_id)
+        public static ApplicantDB getApplicant(int applicant_id)
         {
-           Applicant retVal = new Applicant();
+            Applicant retVal = new Applicant();
 
             string sql = "SELECT * FROM applicants WHERE applicant_id = " + applicant_id;
 
@@ -40,6 +43,24 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
         }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static IEnumerable getApplicants(int job_id)
+        {
+            string sql = "SELECT * FROM appicants AS a JOIN applications AS ap WHERE job_id = " + job_id;
+            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    return dr;
+                }
+            }
+        }
+
+
+
 
         private static string getConnectionString()
         {
