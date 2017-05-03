@@ -17,16 +17,22 @@ namespace RecruitmentAppWebForm
             lstViewJobs.DataSource = null;
             lstViewJobs.DataSource = jobList;
             lstViewJobs.DataBind();
+            int a = lstViewJobs.SelectedIndex;
+
 
 
         }
+
+        
         protected void searchJobs(object sender, EventArgs e)
         {
+          
             string keywordsString = keywords.Text.Trim();
             string[] keywordsArray;
 
             Session["keywords"] = keywordsString;
             Session["location"] = location.Text;
+            Session["job_id"] = 1;
 
             //Splits String into string array
             if (keywordsString.IndexOf(" ") != -1)
@@ -59,6 +65,19 @@ namespace RecruitmentAppWebForm
 
         }
 
+        protected void lstViewJobs_SelectedIndexChanging(object sender, ListViewSelectEventArgs e)
+        {
+            if (lstViewJobs.SelectedIndex != -1)
+            {
+                lstViewJobs.SelectedIndex = e.NewSelectedIndex;
+                int index = lstViewJobs.SelectedIndex;
+                string id = lstViewJobs.SelectedDataKey.Value.ToString();
+                Session["job_id"] = id;
+                //int myId = Convert.ToInt32(lstViewJobs.Items[lstViewJobs.SelectedIndex].FindControl("jobID"));
 
+            }
+           
+
+        }
     }
 }
