@@ -151,7 +151,7 @@ namespace RecruitmentAppWebForm.Models
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        retVal = dr["job_id"].ToString();
+                        retVal = dr["position"].ToString();
                     }
                     dr.Close();
                 }
