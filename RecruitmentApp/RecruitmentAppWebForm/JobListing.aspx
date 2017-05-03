@@ -30,19 +30,17 @@
     <div class="row">
         <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
     </div>
-    <div class="col-md-12">
-        <div class="table table-bordered table-condensed">
 
             <div class="col-md-6 ">
                 <div class="table table-bordered table-condensed">
-                    <asp:ListView ID="lstViewJobs" runat="server">
+                    <asp:ListView ID="lstViewJobs" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
 
-                        <AlternatingItemTemplate>
+                        <%--                        <AlternatingItemTemplate>
                             <div class="altRow">
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <asp:Label ID="lstViewposition" runat="server" Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label>
+                                        <asp:LinkButton ID="lstViewSelect" runat="server" CommandName="Select"><asp:Label ID="lstViewposition" runat="server"  Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label></asp:LinkButton>
                                     </div>
                                 </div>
                                 <br />
@@ -60,13 +58,15 @@
                                 </div>
                             </div>
                             <hr />
-                        </AlternatingItemTemplate>
+                        </AlternatingItemTemplate>--%>
                         <ItemTemplate>
                             <div class="itemRow">
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <asp:Label ID="lstViewposition" runat="server" Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label>
+                                        <asp:LinkButton ID="lstViewSelects" runat="server" CommandName="Select">
+                                            <asp:Label ID="lstViewposition" runat="server" Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label></asp:LinkButton>
+
                                     </div>
                                 </div>
                                 <br />
@@ -74,11 +74,15 @@
                                     <div class="col-md-4">
                                         <div class="">
                                             <asp:Label ID="lstViewcompName" runat="server" Text='<%# Eval("company_name") %>'></asp:Label>
+                                            <asp:Label ID="jobID" runat="server" Visible="false" Text='<%# Eval("job_id") %>'></asp:Label>
                                         </div>
                                         <div class="">
                                             <asp:Label ID="lstViewCity" runat="server" Text='<%# Eval("jobCity") %>'></asp:Label>,
                         <asp:Label ID="lstViewState" runat="server" Text='<%# Eval("posting_date") %>'></asp:Label>
                                         </div>
+                                    </div>
+                                    <div class="col-md-offset-1">
+                                        <asp:LinkButton ID="lstViewSelect" runat="server" CommandName="Select" Text="View Details"></asp:LinkButton>
                                     </div>
 
                                 </div>
@@ -89,18 +93,18 @@
                 </div>
             </div>
             <div class="col-md-6 ">
-                <%--                <div class="table table-bordered table-condensed">
-                    <div class="row">
-                        Stuff1
-                    </div>
-                    <div class="row">
-                        Stuff2
-                    </div>
-                </div>--%>
-                <asp:DetailsView ID="DetailsView1" runat="server"></asp:DetailsView>
+                <div class="table table-bordered table-condensed">
+
+
+                    <asp:DetailsView ID="DetailsView1" runat="server" DataSourceID="ObjectDataSource1"></asp:DetailsView>
+                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="displayJobs" TypeName="RecruitmentAppWebForm.Models.JobsDB">
+                        <SelectParameters>
+                            <asp:SessionParameter DefaultValue="1" Name="jobId" SessionField="job_id" Type="Int32" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </div>
             </div>
-        </div>
-    </div>
+
 
 
 </asp:Content>

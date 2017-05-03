@@ -14,7 +14,7 @@ namespace RecruitmentAppWebForm.Models
     public class JobsDB
     {
         [DataObjectMethod (DataObjectMethodType.Select )]
-        public static IEnumerable displayJobs(int jobId)
+        public static List<Job> displayJobs(int jobId)
         {
             List<Job> retVal = new List<Job>();
             string sql = "SELECT DISTINCT* FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id where j.job_id= @jobId";
@@ -22,10 +22,12 @@ namespace RecruitmentAppWebForm.Models
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
+                   
                     con.Open();
+                    cmd.Parameters.AddWithValue("jobId", jobId);
                     SqlDataReader dr = cmd.ExecuteReader();
                     Job job;
-                    cmd.Parameters.AddWithValue("jobId", jobId);
+                    
                     while (dr.Read())
                     {
                         job = new Models.Job();
@@ -46,15 +48,18 @@ namespace RecruitmentAppWebForm.Models
                         job.jobState = dr["state"].ToString();
                         retVal.Add(job);
                     }
-                    return dr;
+                    dr.Close();
+                    
                 }
             }
+            return retVal;
 
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static List<Job> searchJobs(string[] keywords, string location)
         {
+
             List<Job> retVal = new List<Job>();
             string sql = null;
             //Checks for empty keywords and retrieves all results for empty ones
