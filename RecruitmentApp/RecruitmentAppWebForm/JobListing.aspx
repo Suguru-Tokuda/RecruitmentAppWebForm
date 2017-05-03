@@ -30,8 +30,6 @@
     <div class="row">
         <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
     </div>
-    <div class="col-md-12">
-        <div class="table table-bordered table-condensed">
 
             <div class="col-md-6 ">
                 <div class="table table-bordered table-condensed">
@@ -106,8 +104,7 @@
                     </asp:ObjectDataSource>
                 </div>
             </div>
-        </div>
-    </div>
+
 
 
 </asp:Content>
