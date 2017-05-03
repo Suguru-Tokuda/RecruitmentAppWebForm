@@ -32,8 +32,7 @@
     </div>
 
             <div class="col-md-6 ">
-                <div class="table table-bordered table-condensed">
-                    <asp:ListView ID="lstViewJobs" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
+                     <asp:ListView ID="lstViewJobs" CssClass="table table-bordered table-condensed" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
 
                         <%--                        <AlternatingItemTemplate>
                             <div class="altRow">
@@ -91,18 +90,18 @@
                         </ItemTemplate>
                     </asp:ListView>
                 </div>
-            </div>
+
             <div class="col-md-6 ">
-                <div class="table table-bordered table-condensed">
+               
 
 
-                    <asp:DetailsView ID="DetailsView1" runat="server" DataSourceID="ObjectDataSource1"></asp:DetailsView>
+                    <asp:DetailsView ID="DetailsView1" runat="server" DataSourceID="ObjectDataSource1" CssClass="table table-bordered table-condensed"></asp:DetailsView>
                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="displayJobs" TypeName="RecruitmentAppWebForm.Models.JobsDB">
                         <SelectParameters>
                             <asp:SessionParameter DefaultValue="1" Name="jobId" SessionField="job_id" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                </div>
+
             </div>
 
 
