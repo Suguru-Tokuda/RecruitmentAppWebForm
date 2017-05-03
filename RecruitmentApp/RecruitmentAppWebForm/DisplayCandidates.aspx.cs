@@ -50,7 +50,8 @@ namespace RecruitmentAppWebForm
 
         private void showApplicantDetails()
         {
-            List<Applicant> list = ApplicantDB.getApplicant(applicantID);
+            List<Applicant> list = new List<Applicant>();
+            list.Add(ApplicantDB.getApplicant(applicantID));
             candidateDetails.DataSource = list;
             candidateDetails.DataBind();
         }
@@ -58,6 +59,7 @@ namespace RecruitmentAppWebForm
         protected void applicantList_SelectedIndexChanged(object sender, EventArgs e)
         {
             applicantID = Convert.ToInt32(((System.Web.UI.WebControls.Label)applicantList.Items[applicantList.SelectedIndex].FindControl("applicantID")).Text);
+            this.showApplicantDetails();
         }
     }
 }

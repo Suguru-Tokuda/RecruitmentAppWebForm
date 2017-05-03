@@ -47,6 +47,9 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
+.navbar {
+    background-color: aqua;
+}
 /*.top {
     position: absolute;
     top: 10%;
