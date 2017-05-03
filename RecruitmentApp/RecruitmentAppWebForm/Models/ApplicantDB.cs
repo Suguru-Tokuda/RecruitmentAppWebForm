@@ -10,9 +10,11 @@ using System.Web;
 
 namespace RecruitmentAppWebForm.Models
 {
+    [DataObject(true)]
     public class ApplicantDB
     {
-        public static ApplicantDB getApplicant(int applicant_id)
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static Applicant getApplicant(int applicant_id)
         {
             Applicant retVal = new Applicant();
 
@@ -45,18 +47,30 @@ namespace RecruitmentAppWebForm.Models
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
-        public static IEnumerable getApplicants(int job_id)
+        public static List<Applicant> getApplicants(int job_id)
         {
-            string sql = "SELECT * FROM appicants AS a JOIN applications AS ap WHERE job_id = " + job_id;
+
+            List<Applicant> retVal = new List<Applicant>();
+
+            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = " + job_id;
             using (SqlConnection con = new SqlConnection(getConnectionString()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
+                    Applicant applicant;
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-                    return dr;
+                    while (dr.Read())
+                    {
+                        applicant = new Applicant();
+                        applicant.first_name = dr["first_name"].ToString();
+                        applicant.last_name = dr["last_name"].ToString();
+                        applicant.applicant_id = Convert.ToInt32(dr["applicant_id"].ToString());
+                        retVal.Add(applicant);
+                    }
                 }
             }
+            return retVal;
         }
 
 
