@@ -86,9 +86,6 @@ nav {
     background-color: #4CAF50;
     color: white;
 }
-/*.top {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}*/
+.register {
+    color: white;
+}

@@ -20,6 +20,7 @@ namespace RecruitmentAppWebForm.Models
         public string preference { get; set; }
         public int current_salary { get; set; }
         public int desired_salary { get; set; }
+        public string password { get; set;}
 
     }
 }
