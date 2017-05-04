@@ -26,7 +26,7 @@ namespace RecruitmentAppWebForm.Models
                     while (dr.Read())
                     {
                         company = new Company();
-                        company.company_id = dr["company_id"];
+                        company.company_id = (int)dr["company_id"];
 
 
 
