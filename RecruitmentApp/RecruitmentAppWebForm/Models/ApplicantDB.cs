@@ -108,6 +108,38 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
+        public static string login(string email, System.Web.UI.Page page)
+        {
+            string retVal = null;
+
+            string sql = "SELECT * FROM applicants WHERE email = @email";
+
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    int app_id=0;
+                    while (dr.Read())
+                    {
+                        app_id = Convert.ToInt32(dr["applicant_id"].ToString());
+                    }
+                    if (app_id == 5000)
+                    {
+                        retVal = "admin";
+                        page.Session["applicant_id"] = app_id;
+                    } else
+                    {
+                        retVal = "applicant";
+                        page.Session["applicant_id"] = app_id;
+                    }
+                    con.Close();
+                }
+            }
+            return retVal;
+        }
 
     }
 }

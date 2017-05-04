@@ -12,6 +12,8 @@ namespace RecruitmentAppWebForm.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Models.User.checkUserLogin(Page);
+            Models.Administrator.checkAdminLogin(Page);
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
@@ -34,11 +36,17 @@ namespace RecruitmentAppWebForm.Account
                 // This doen't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
+                string typeOfUser = ApplicantDB.login(Email.Text, Page);
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        if (typeOfUser.Equals("admin"))
+                        {
+                            IdentityHelper.RedirectToReturnUrl(Request.QueryString["DisplayCandidates.aspx"], Response);
+                        } else if (typeOfUser.Equals("applicant"))
+                        {
+                            IdentityHelper.RedirectToReturnUrl(Request.QueryString["Default.aspx"], Response);
+                        }
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

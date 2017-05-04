@@ -261,6 +261,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SelectJob.aspx" />
     <Content Include="Site.Master" />
     <Content Include="test.aspx" />
     <Content Include="TestIframe.aspx" />
@@ -426,6 +427,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantDB.cs" />
     <Compile Include="Models\Application.cs" />
@@ -453,6 +455,13 @@
     </Compile>
     <Compile Include="ResumeUpload.aspx.designer.cs">
       <DependentUpon>ResumeUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectJob.aspx.cs">
+      <DependentUpon>SelectJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelectJob.aspx.designer.cs">
+      <DependentUpon>SelectJob.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
