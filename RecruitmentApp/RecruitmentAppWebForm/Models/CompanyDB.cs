@@ -36,10 +36,5 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
         }
-
-
-
-
-
     }
 }
