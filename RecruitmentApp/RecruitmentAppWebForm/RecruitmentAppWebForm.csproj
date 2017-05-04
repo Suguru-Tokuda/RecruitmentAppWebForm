@@ -211,6 +211,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\pic.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="DisplayCandidates.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -223,6 +224,7 @@
     </Content>
     <Content Include="JobListing.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="RegisterJob.aspx" />
     <Content Include="ResumeUpload.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -258,6 +260,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="test.aspx" />
+    <Content Include="TestIframe.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -424,6 +427,8 @@
     <Compile Include="Models\ApplicantDB.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyDB.cs" />
+    <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
@@ -431,6 +436,13 @@
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\ResumesDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterJob.aspx.cs">
+      <DependentUpon>RegisterJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterJob.aspx.designer.cs">
+      <DependentUpon>RegisterJob.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ResumeUpload.aspx.cs">
       <DependentUpon>ResumeUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -459,6 +471,13 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestIframe.aspx.cs">
+      <DependentUpon>TestIframe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestIframe.aspx.designer.cs">
+      <DependentUpon>TestIframe.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -87,7 +87,8 @@
         </div>
 
         <div class="">
-            <iframe id="wordResume" runat="server"></iframe>
+            <object />
+            <iframe src="TestIframe.aspx" id="wordResume" runat="server"></iframe>
         </div>
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -12,33 +13,73 @@ namespace RecruitmentAppWebForm.Models
     public class ResumesDB
     {
 
-        public static void uploadResume(FileUpload resumeData, string applicant_id)
+        public static void uploadResume(FileUpload resumeData, int applicant_id)
         {
             string title = Path.GetFileName(resumeData.PostedFile.FileName);
             string contentType = resumeData.PostedFile.ContentType;
-            using (Stream fs = resumeData.PostedFile.InputStream)
-            {
-                using (BinaryReader br = new BinaryReader(fs))
-                {
-                    byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                    string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            string ext = Path.GetExtension(title);
+            string fileType = "application/vnd.ms-word";
 
-                    using (SqlConnection con = new SqlConnection(constr))
+            Stream fs = resumeData.PostedFile.InputStream;
+            BinaryReader br = new BinaryReader(fs);
+            Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+                    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                     {
-                        string query = "INSERT INTO resumes VALUES (@applicant_id, @title, @data)";
+                        string query = "INSERT INTO resumes (applicant_id, title, data) VALUES (@applicant_id, @title, @data)";
 
                         using (SqlCommand cmd = new SqlCommand(query))
                         {
                             cmd.Connection = con;
+                            con.Open();
                             cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
                             cmd.Parameters.AddWithValue("@title", title);
-                            cmd.Parameters.AddWithValue("@contentType", contentType);
-                            cmd.Parameters.AddWithValue("@data", bytes);
+                            cmd.Parameters.Add("@data", SqlDbType.Binary).Value = bytes;
+                            cmd.ExecuteNonQuery();
+                            con.Close();
                         }
+                    }
+        }
+
+        public static Stream retrieveResume(int applicant_id)
+        {
+            FileStream fs = null;
+            string sql = "SELECT data FROM resumes WHERE appliant_id = " + applicant_id;
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while(dr.Read())
+                        {
+                            int size = 1024 * 1024;
+                            byte[] buffer = new byte[size];
+                            int readBytes = 0;
+                            int index = 4;
+                            string title = dr["title"].ToString();
+
+                            using (fs = new FileStream(title, FileMode.Create, FileAccess.Write, FileShare.None))
+                            {
+                                while((readBytes = (int)dr.GetBytes(0, index, buffer, 0, size)) > 0)
+                                {
+                                    fs.Write(buffer, 0, readBytes);
+                                    index += readBytes;
+                                }
+                            }
+                        }
+                        con.Close();
                     }
                 }
             }
-
+            return fs;
         }
+
+
+
+
     }
 }
