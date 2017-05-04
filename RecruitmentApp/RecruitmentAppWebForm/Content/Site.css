@@ -46,9 +46,10 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-body{
+body {
     background-color: #1C5E55;
     filter: alpha(opacity=10);
+    background-image: url('../Images/jobSeachPeople.jpg');
 }
 .navbar {
     background-color: #1C5E55;

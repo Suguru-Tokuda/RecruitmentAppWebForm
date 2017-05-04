@@ -38,7 +38,6 @@ namespace RecruitmentAppWebForm.Models
                         job.company_name = dr["company_name"].ToString();
                         job.category = dr["category"].ToString();
                         job.position = dr["position"].ToString();
-                        job.emp_id = Convert.ToInt32(dr["emp_id"].ToString());
                         job.salary_min = Convert.ToInt32(dr["salary_min"].ToString());
                         job.salary_max = Convert.ToInt32(dr["salary_max"].ToString());
                         job.level = dr["level"].ToString();
@@ -121,7 +120,6 @@ namespace RecruitmentAppWebForm.Models
                         job.company_name = dr["company_name"].ToString();
                         job.category = dr["category"].ToString();
                         job.position = dr["position"].ToString();
-                        job.emp_id = Convert.ToInt32(dr["emp_id"].ToString());
                         job.salary_min = Convert.ToInt32(dr["salary_min"].ToString());
                         job.salary_max = Convert.ToInt32(dr["salary_max"].ToString());
                         job.level = dr["level"].ToString();

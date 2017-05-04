@@ -3,40 +3,45 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="col-md-12">
 
-        
-            <%--Search Bar--%>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-sm-offset-2 xs-offset-2">
-                        <%--<div class="row">--%>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" />
-                        </div>
-                        <div class="col-md-3">
-                            <div class="col-m2">
-                                <asp:Button runat="server" Text="Search" CssClass="btn btn-primary" OnClick="searchJobs" />
-                            </div>
-                            <div class="co-md-1">
-                                <asp:Label runat="server" ID="Label1" CssClass="text-danger" Display="dynamic" />
-                            </div>
-                        </div>
-                        <%--</div>--%>
+
+        <%--Search Bar--%>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-sm-offset-2 xs-offset-2">
+                    <%--<div class="row">--%>
+                    <div class="col-md-4">
+                        <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control" />
                     </div>
+                    <div class="col-md-3">
+                        <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-m2">
+                            <asp:Button runat="server" Text="Search" CssClass="btn btn-primary" OnClick="searchJobs" />
+                        </div>
+                        <div class="co-md-1">
+                            <asp:Label runat="server" ID="Label1" CssClass="text-danger" Display="dynamic" />
+                        </div>
+                    </div>
+                    <%--</div>--%>
                 </div>
             </div>
+        </div>
 
-            <%--List--%>
-            <div class="row">
-                <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
-            </div>
+        <%--List--%>
+        <div class="row">
+            <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
+        </div>
         <div class="table table-bordered table-condensed">
             <div class="text-center">
                 <asp:Label ID="lblApplication" CssClass="glyphicon-align-center" runat="server" Visible="false" Text="">
                     <h1 style="color:burlywood">
                         Your application has been submitted! You should receive and email shortly. Click here to view all your submissions
+                    </h1>
+                </asp:Label>
+                <asp:Label ID="lblAppError" CssClass="glyphicon-align-center" runat="server" Visible="false" Text="">
+                    <h1 style="color: red">
+                        You already applied for that position!
                     </h1>
                 </asp:Label>
             </div>
@@ -105,8 +110,6 @@
 
             <div class="col-md-6" style="height: 300px; overflow: auto;">
 
-                <asp:Button ID="btnApply" runat="server" CssClass="button button1 btn btn-primary" Text="Apply" />
-
                 <asp:DetailsView ID="DetailsView1" ForeColor="#333333" GridLines="None" runat="server" DataSourceID="ObjectDataSource1"
                     CssClass="table table-bordered table-condensed" EnableViewState="False" AutoGenerateRows="False">
                     <AlternatingRowStyle BackColor="White" />
@@ -118,9 +121,9 @@
                         <asp:Button ID="btnApply" runat="server" CssClass="button button1 btn btn-primary" OnClick="btnApply_Click" Text="Apply" />
 
                     </HeaderTemplate>
-                    
+
                     <Fields>
-                        
+
                         <asp:BoundField DataField="job_id" HeaderText="job_id" SortExpression="job_id" />
                         <asp:BoundField DataField="company_id" HeaderText="company_id" SortExpression="company_id" />
                         <asp:BoundField DataField="position" HeaderText="position" SortExpression="position" />
@@ -315,7 +318,7 @@
                 </asp:FormView>
             </div>--%>
         </div>
-    
-</div>
+
+    </div>
 
 </asp:Content>

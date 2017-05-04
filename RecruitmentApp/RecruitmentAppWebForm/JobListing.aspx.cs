@@ -21,6 +21,7 @@ namespace RecruitmentAppWebForm
             lstViewJobs.DataBind();
             int a = lstViewJobs.SelectedIndex;
             lblApplication.Visible = false;
+            lblAppError.Visible = false;
 
 
 
@@ -90,9 +91,19 @@ namespace RecruitmentAppWebForm
 
             //}
             int job_id = (int)Session["job_id"];
-            int applicant_id = (int)Session["applicant_id"];
-            lblApplication.Visible = true;
-            insertApplication(job_id, applicant_id);
+            //int applicant_id = (int)Session["applicant_id"];
+            int applicant_id = 1000;
+            
+            if (!hasAlreadyApplied(job_id,applicant_id))
+            {
+                insertApplication(job_id, applicant_id);
+                lblApplication.Visible = true;
+            }
+            else
+            {
+                lblAppError.Visible = true;
+            }
+            
         }
 
         private void insertApplication(int job_id, int applicant_id)
@@ -108,6 +119,27 @@ namespace RecruitmentAppWebForm
                     int result = cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        private bool hasAlreadyApplied(int jobId, int applicant_id)
+        {
+            bool retVal = false;
+            string sql = "SELECT * FROM applications WHERE job_id= @job_id AND applicant_id=@applicant_id";
+            using (SqlConnection con = new SqlConnection(GetConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                      cmd.Parameters.AddWithValue("job_id", jobId);
+                    cmd.Parameters.AddWithValue("applicant_id", applicant_id);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        retVal = true;
+                    }
+                }
+            }
+            return retVal;
         }
 
         private static string GetConnectionString()
