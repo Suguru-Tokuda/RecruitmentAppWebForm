@@ -8,11 +8,11 @@
     <div class="row">
 
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <asp:DataList DataKeyField="applicant_id" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
+            <asp:DataList DataKeyField="applicant_id" BackColor="#d4d4d4" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
                 <HeaderTemplate>
-                    <label class="text-align: center">Applicants</label>
+                    <label style="text-align: center; color: lightgray">Applicants</label>
                 </HeaderTemplate>
-                <HeaderStyle BackColor="#00ffcc" />
+                <HeaderStyle BackColor="#1C5E55" />
                 <ItemTemplate>
                     <asp:LinkButton Text='<%# Eval("first_name") + " " + Eval("last_name") %>' CommandName="Select" runat="server" />
                     <asp:Label ID="applicantID" runat="server" Visible="false" Text='<%# Eval("applicant_id") %>' />
@@ -21,11 +21,13 @@
         </div>
 
         <div class="col-md-4">
-            <asp:DetailsView runat="server" ID="candidateDetails" CssClass="table" AutoGenerateRows="false">
+            <asp:DetailsView runat="server" ID="candidateDetails" BackColor="#d4d4d4" CssClass="table" AutoGenerateRows="false">
                 <HeaderTemplate>
                     <lable>Selected Applicant</lable>
                 </HeaderTemplate>
-                <HeaderStyle BackColor="#caffff" />
+                <HeaderStyle BackColor="#1C5E55" Font-Bold="true" ForeColor="lightgray" />
+                <CommandRowStyle BackColor="lightgray" />
+
                 <Fields>
                     <%--Name--%>
                     <asp:TemplateField HeaderText="Name">
@@ -88,7 +90,7 @@
 
         <div class="">
             <object />
-            <iframe src="TestIframe.aspx" id="wordResume" runat="server"></iframe>
+            <iframe src="TestIframe.aspx" id="wordResume" runat="server" style="width: 40%; height: 400px" ></iframe>
         </div>
 
 
