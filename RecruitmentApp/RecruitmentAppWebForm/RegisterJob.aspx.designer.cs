@@ -31,13 +31,13 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.CheckBox companyNotInList;
         
         /// <summary>
-        /// companyName control.
+        /// companyText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyName;
+        protected global::System.Web.UI.WebControls.TextBox companyText;
         
         /// <summary>
         /// position control.

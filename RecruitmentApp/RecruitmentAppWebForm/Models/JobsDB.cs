@@ -243,9 +243,9 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-        public static void enterJob(string position, string category, int salary_min, int salary_max, string level, string description, string responsibility, string qualification, DateTime posting_date)
+        public static void enterJob(string position, string industry, int salary_min, int salary_max, string level, string description, string responsibility, string qualification, DateTime posting_date)
         {
-            string sql = "INSERT INTO jobs (position, category, salary_min, salary_max, level, description, responsibility, qualification, posting_date, filled) VLAUES (@position, @category, @salary_min, @salary_max, @level, @description, @responsibility, @qualification, @posting_date, @filled)";
+            string sql = "INSERT INTO jobs (company_id, position, category, salary_min, salary_max, level, description, responsibility, qualification, posting_date, filled) VALUES (@position, @category, @salary_min, @salary_max, @level, @description, @responsibility, @qualification, @posting_date, @filled)";
 
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
@@ -253,7 +253,7 @@ namespace RecruitmentAppWebForm.Models
                 {
                     con.Open();
                     cmd.Parameters.AddWithValue("@position", position);
-                    cmd.Parameters.AddWithValue("@category", category);
+                    cmd.Parameters.AddWithValue("@category", industry);
                     cmd.Parameters.AddWithValue("@salary_min", salary_min);
                     cmd.Parameters.AddWithValue("@salary_max", salary_max);
                     cmd.Parameters.AddWithValue("@level", level);
@@ -261,8 +261,8 @@ namespace RecruitmentAppWebForm.Models
                     cmd.Parameters.AddWithValue("@responsibility", responsibility);
                     cmd.Parameters.AddWithValue("@qualification", qualification);
                     cmd.Parameters.AddWithValue("@posting_date", posting_date);
-                    cmd.Parameters.AddWithValue("@", posting_date);
                     cmd.Parameters.AddWithValue("@filled", 0);
+                    cmd.ExecuteNonQuery();
                     con.Close();
                 }
             }
