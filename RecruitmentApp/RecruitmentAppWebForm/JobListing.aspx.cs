@@ -19,6 +19,7 @@ namespace RecruitmentAppWebForm
             lstViewJobs.DataSource = null;
             lstViewJobs.DataSource = jobList;
             lstViewJobs.DataBind();
+
             int a = lstViewJobs.SelectedIndex;
             lblApplication.Visible = false;
             lblAppError.Visible = false;
@@ -92,7 +93,7 @@ namespace RecruitmentAppWebForm
             //}
             int job_id = (int)Session["job_id"];
             //int applicant_id = (int)Session["applicant_id"];
-            Session["applicant_id"] = 1000;
+           // Session["applicant_id"] = 1000;
             int applicant_id = (int)Session["applicant_id"]; ;
             
             if (!hasAlreadyApplied(job_id,applicant_id))

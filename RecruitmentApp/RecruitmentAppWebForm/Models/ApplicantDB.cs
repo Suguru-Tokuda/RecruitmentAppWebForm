@@ -140,6 +140,28 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
         }
+        public static int getRegisteredApplicant(string email)
+        {
+            int retval = 404;
+            string sql = "SELECT applicant_id FROM applicants WHERE UPPER(email)= UPPER(@email)";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("email", email);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    
+                    while (dr.Read())
+                    {
+                        retval= Convert.ToInt32(dr["applicant_id"].ToString());
+                    }
+                }
+            }
+
+                return retval;
+        }
+
 
     }
 }

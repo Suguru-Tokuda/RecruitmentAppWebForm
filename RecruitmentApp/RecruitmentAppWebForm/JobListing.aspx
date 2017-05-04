@@ -10,10 +10,10 @@
                 <div class="col-md-offset-2 col-sm-offset-2 xs-offset-2">
                     <%--<div class="row">--%>
                     <div class="col-md-4">
-                        <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="keywords" placeholder="Job title, keywords, or company" CssClass="form-control" Height="45px" />
                     </div>
                     <div class="col-md-3">
-                        <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" Height="45px" />
                     </div>
                     <div class="col-md-3">
                         <div class="col-m2">
@@ -46,40 +46,16 @@
                 </asp:Label>
             </div>
             <div class="col-md-6 ">
-                <div class=" table table-bordered table-condensed">
+                <div class="table table-bordered table-condensed" style="background-color:lightgray;height:450px">
                     <asp:ListView ID="lstViewJobs" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
-
-                        <%--                        <AlternatingItemTemplate>
-                            <div class="altRow">
-                                <div class="row">
-
-                                    <div class="col-md-4">
-                                        <asp:LinkButton ID="lstViewSelect" runat="server" CommandName="Select"><asp:Label ID="lstViewposition" runat="server"  Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label></asp:LinkButton>
-                                    </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="">
-                                            <asp:Label ID="lstViewcompName" runat="server" Text='<%# Eval("company_name") %>'></asp:Label>
-                                        </div>
-                                        <div class="">
-                                            <asp:Label ID="lstViewCity" runat="server" Text='<%# Eval("jobCity") %>'></asp:Label>,
-                        <asp:Label ID="lstViewState" runat="server" Text='<%# Eval("posting_date") %>'></asp:Label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <hr />
-                        </AlternatingItemTemplate>--%>
-                        <ItemTemplate>
-                            <div class="itemRow">
+                    
+                        <ItemTemplate >
+                            <div class="itemRow" style="background-color:lightgray">
                                 <div class="row">
 
                                     <div class="col-md-4">
                                         <asp:LinkButton ID="lstViewSelects" runat="server" CommandName="Select">
-                                            <asp:Label ID="lstViewposition" runat="server" Text='<%# Eval("position") %>' ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label>
+                                            <asp:Label ID="lstViewposition" runat="server" Text='<%# Eval("position") %>' ForeColor="#1C5E55" Font-Size="Larger"  Font-Bold="True"></asp:Label>
                                         </asp:LinkButton>
 
                                     </div>
@@ -93,14 +69,10 @@
                                         </div>
                                         <div class="">
                                             <asp:Label ID="lstViewCity" runat="server" Text='<%# Eval("jobCity") %>'></asp:Label>,
-                        <asp:Label ID="lstViewState" runat="server" Text='<%# Eval("posting_date") %>'></asp:Label>
+                        <asp:Label ID="lstViewState" runat="server" Text='<%# Eval("jobState") %>'></asp:Label>
                                         </div>
                                     </div>
-                                    <div class="col-md-offset-1">
-                                        <asp:LinkButton ID="lstViewSelect" runat="server" CommandName="Select" Text="View Details"></asp:LinkButton>
-                                    </div>
-
-                                </div>
+                                        </div>
                             </div>
                             <hr />
                         </ItemTemplate>
@@ -108,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6" style="height: 300px; overflow: auto;">
+            <div class="col-md-6" style="height: 450px; overflow: auto;">
 
                 <asp:DetailsView ID="DetailsView1" ForeColor="#333333" GridLines="None" runat="server" DataSourceID="ObjectDataSource1"
                     CssClass="table table-bordered table-condensed" EnableViewState="False" AutoGenerateRows="False">
@@ -123,11 +95,18 @@
                     </HeaderTemplate>
 
                     <Fields>
-
-                        <asp:BoundField DataField="job_id" HeaderText="Job ID" SortExpression="job_id" />
-                        <asp:BoundField DataField="company_id" HeaderText="Company ID" SortExpression="company_id" />
-                        <asp:BoundField DataField="position" HeaderText="Position name" SortExpression="position" />
                         <asp:BoundField DataField="company_name" HeaderText="Company" SortExpression="company_name" />
+                        <asp:TemplateField ShowHeader="false">
+                            <ItemStyle Height="100px" />
+
+                            <ItemTemplate>
+                                <asp:Label runat="server" Font-Bold="true" Font-Underline="true" Font-Names="Arial" Font-Size="Larger" Text="">Description</asp:Label><br />
+                                <asp:Label runat="server" Font-Names="Arial" Text='<%# Eval("description")%>'/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="job_id" HeaderText="Job ID" SortExpression="job_id" />
+                        <asp:BoundField DataField="position" HeaderText="Position name" SortExpression="position" />
+                        
                         <asp:BoundField DataField="category" HeaderText="Industry" SortExpression="category" />
                         <asp:BoundField DataField="salary_min" HeaderText="Minimum salary" SortExpression="salary_min"  />
                         <asp:BoundField DataField="salary_max" HeaderText="Maximum salary" SortExpression="salary_max" />
