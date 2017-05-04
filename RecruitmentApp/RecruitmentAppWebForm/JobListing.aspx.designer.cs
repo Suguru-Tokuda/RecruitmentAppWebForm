@@ -49,6 +49,15 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.Label sqlErrorMessage;
         
         /// <summary>
+        /// lblApplication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApplication;
+        
+        /// <summary>
         /// lstViewJobs control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace RecruitmentAppWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lstViewJobs;
+        
+        /// <summary>
+        /// btnApply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApply;
         
         /// <summary>
         /// DetailsView1 control.
