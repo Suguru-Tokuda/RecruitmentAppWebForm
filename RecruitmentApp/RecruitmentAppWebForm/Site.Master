@@ -57,7 +57,7 @@
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
-<%--                        <AnonymousTemplate>
+                        <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <% if((bool)Session["loggedIn"] == true) {%>
                                 <li runat="server" class="dropdown">
@@ -73,7 +73,7 @@
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
                                 <% } %>
                             </ul>
-                        </AnonymousTemplate>--%>
+                        </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>

@@ -11,20 +11,9 @@ namespace RecruitmentAppWebForm
 {
     public partial class _Default : Page
     {
-        Applicant applicant;
         protected void Page_Load(object sender, EventArgs e)
         {
-            applicant = (Applicant)HttpContext.Current.Session["applicant"];
-            if (applicant == null)
-            {
-                Session["loggedIn"] = false;
-            } else
-            {
-                if (applicant.loggedIn != false)
-                {
-                    Session["loggedIn"] = true;
-                }
-            }
+            Models.User.checkUserLogin(this.Page);
         }
 
         protected void searchJobs(object sender, EventArgs e)
