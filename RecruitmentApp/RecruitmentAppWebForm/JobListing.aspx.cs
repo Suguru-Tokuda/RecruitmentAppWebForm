@@ -1,6 +1,8 @@
 ﻿using RecruitmentAppWebForm.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +20,7 @@ namespace RecruitmentAppWebForm
             lstViewJobs.DataSource = jobList;
             lstViewJobs.DataBind();
             int a = lstViewJobs.SelectedIndex;
+            lblApplication.Visible = false;
 
 
 
@@ -72,12 +75,44 @@ namespace RecruitmentAppWebForm
                 lstViewJobs.SelectedIndex = e.NewSelectedIndex;
                 int index = lstViewJobs.SelectedIndex;
                 string id = lstViewJobs.SelectedDataKey.Value.ToString();
-                Session["job_id"] = id;
+                Session["job_id"] = Convert.ToInt32(id);
                 //int myId = Convert.ToInt32(lstViewJobs.Items[lstViewJobs.SelectedIndex].FindControl("jobID"));
 
             }
            
 
+        }
+
+        protected void btnApply_Click(object sender, EventArgs e)
+        {
+            //if (Session["applicant_id"] != null)
+            //{
+
+            //}
+            int job_id = (int)Session["job_id"];
+            int applicant_id = (int)Session["applicant_id"];
+            lblApplication.Visible = true;
+            insertApplication(job_id, applicant_id);
+        }
+
+        private void insertApplication(int job_id, int applicant_id)
+        {
+            string sql = "INSERT INTO applications VALUES (@job_id, @applicant_id, NULL, NULL)";
+            using (SqlConnection con = new SqlConnection(GetConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("job_id", job_id);
+                    cmd.Parameters.AddWithValue("applicant_id", applicant_id);
+                    int result = cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private static string GetConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
     }
 }
