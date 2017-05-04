@@ -20,12 +20,14 @@ namespace RecruitmentAppWebForm.Account
             if (applicant == null)
             {
                 Session["loggedIn"] = false;
+                Session["applicant_id"] = null;
             }
             else
             {
                 if (applicant.loggedIn != false)
                 {
                     Session["loggedIn"] = true;
+                    Session["applicant_id"] = applicant.applicant_id;
                 }
             }
 
