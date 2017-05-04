@@ -66,10 +66,12 @@ namespace RecruitmentAppWebForm
         {
             if (companyName.Enabled == false)
             {
-                this.companyName.Enabled = true;
+                companyName.Enabled = true;
+                companyList.Enabled = false;
             } else if (companyName.Enabled == true)
             {
-                this.companyName.Enabled = false;
+                companyName.Enabled = false;
+                companyList.Enabled = true;
             }
             
         }

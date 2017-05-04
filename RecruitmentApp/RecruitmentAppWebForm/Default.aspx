@@ -10,7 +10,7 @@
                     <div class="col-md-3 col-sm-3 col-xs-3">
                         <asp:TextBox runat="server" ID="location" placeholder="Location, Zip" CssClass="form-control" />
                     </div>
-                    <asp:Button runat="server" Text="Search" CssClass="btn btn-primary" OnClick="searchJobs" />
+                    <asp:Button runat="server" Text="Search" CssClass="btn btn-secondary" OnClick="searchJobs" />
                     <asp:Label runat="server" ID="sqlErrorMessage" CssClass="text-danger" Display="dynamic" />
                 </div>
             </div>
