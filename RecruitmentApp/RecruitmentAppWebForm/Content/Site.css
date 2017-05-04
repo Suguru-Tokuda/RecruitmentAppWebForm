@@ -56,9 +56,6 @@ body{
     filter: alpha(opacity=10);
     color: indianred;
 }
-a {
-    color: white;
-}
 nav {
     color: white;
 }

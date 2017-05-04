@@ -33,7 +33,8 @@ namespace RecruitmentAppWebForm
         protected void resumeUploadBtn_Click(object sender, EventArgs e)
         {
             //get applicant_id from the session
-            string applicant_id = (string)HttpContext.Current.Session["applicant_id"];
+            //int applicant_id = (int)HttpContext.Current.Session["applicant_id"];
+            int applicant_id = 1000;
             //put data into the DB
             ResumesDB.uploadResume(resumeData, applicant_id);
         }

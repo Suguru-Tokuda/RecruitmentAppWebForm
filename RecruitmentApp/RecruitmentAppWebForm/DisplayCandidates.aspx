@@ -21,23 +21,78 @@
         </div>
 
         <div class="col-md-4">
-            <asp:DataList runat="server" ID="candidateDetails">
-                <ItemTemplate>
-                    <label>Name</label>
-                    <asp:Label runat="server" Text='<%# Eval("first_name") + " " + Eval("last_name") %>' />
-                </ItemTemplate>
-            </asp:DataList>
+            <asp:DetailsView runat="server" ID="candidateDetails" CssClass="table" AutoGenerateRows="false">
+                <HeaderTemplate>
+                    <lable>Selected Applicant</lable>
+                </HeaderTemplate>
+                <HeaderStyle BackColor="#caffff" />
+                <Fields>
+                    <%--Name--%>
+                    <asp:TemplateField HeaderText="Name">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("first_name") + " " + Eval("last_name") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
+                    <%--Phone--%>
+                    <asp:TemplateField HeaderText="Phone">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("phone") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
+                    <%--Email--%>
+                    <asp:TemplateField HeaderText="Email">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("email") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
+                    <%--Current Location--%>
+                    <asp:TemplateField HeaderText="Current Location">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("city") + ", " + Eval("state") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%--Skills--%>
+                    <asp:TemplateField HeaderText="Skills">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("skills") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%--Preferences--%>
+                    <asp:TemplateField HeaderText="Preference">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("preference") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%--Current salary--%>
+                    <asp:TemplateField HeaderText="Current salary">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("current_salary", "{0:c}") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%--Desired salary--%>
+                    <asp:TemplateField HeaderText="Desired salary">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Text='<%# Eval("desired_salary", "{0:c}") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Fields>
+            </asp:DetailsView>
+        </div>
+
+        <div class="">
+            <object />
+            <iframe src="TestIframe.aspx" id="wordResume" runat="server"></iframe>
         </div>
 
 
 
+
     </div>
-
-
-
-
-
 </asp:Content>
