@@ -11,7 +11,7 @@ namespace RecruitmentAppWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Models.User.checkUserLogin(this.Page);
+            //Models.User.checkUserLogin(this.Page);
             GridView1.DataBind();
         }
     }
