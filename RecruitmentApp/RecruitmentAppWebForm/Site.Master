@@ -51,11 +51,11 @@
                     <a style="color: white" class="navbar-brand" runat="server" href="~/">RecruitmentApp</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <%--<ul class="nav navbar-nav">
                         <li><a style="color: white" runat="server" href="~/">Home</a></li>
                         <li><a style="color: white" runat="server" href="~/About">About</a></li>
                         <li><a style="color: white" runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
+                    </ul>--%>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">

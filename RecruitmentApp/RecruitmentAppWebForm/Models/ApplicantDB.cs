@@ -20,7 +20,7 @@ namespace RecruitmentAppWebForm.Models
 
             string sql = "SELECT * FROM applicants WHERE applicant_id = " + applicant_id;
 
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -53,7 +53,7 @@ namespace RecruitmentAppWebForm.Models
             List<Applicant> retVal = new List<Applicant>();
 
             string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = " + job_id;
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -73,15 +73,40 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-
-
-
-        private static string getConnectionString()
+        public static string registerApplicant(string first_name, string last_name, string phone, string email, string street, string city, string state, string zip, string skills, string preference, int current_salary, int desired_salary)
         {
-            return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string retVal = null;
+
+            string sql = "INSERT INTO applicants (first_name, last_name, phone, email, street, city, state, zip, skills, preference, current_salary, desired_salary) VALUES (@first_name, @last_name, @phone, @email, @street, @city, @state, @zip, @skills, @preference, @current_salary, @desired_salary)";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@first_name", first_name);
+                    cmd.Parameters.AddWithValue("@last_name", last_name);
+                    cmd.Parameters.AddWithValue("@phone", phone);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@state", state);
+                    cmd.Parameters.AddWithValue("@zip", zip);
+                    cmd.Parameters.AddWithValue("@skills", skills);
+                    cmd.Parameters.AddWithValue("@preference", preference);
+                    cmd.Parameters.AddWithValue("@current_salary", current_salary);
+                    cmd.Parameters.AddWithValue("@desired_salary", desired_salary);
+                    con.Open();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    } catch (SqlException e)
+                    {
+                        Console.Write(e + " was caught");
+                        retVal = "unsuccessful";
+                    }                    
+                }
+            }
+            return retVal;
         }
-
-
 
 
     }
