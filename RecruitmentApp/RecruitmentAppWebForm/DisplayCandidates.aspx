@@ -2,15 +2,21 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
 
+    <div class="form-group">
+        <div class="row">
+            <label class="col-md-1" style="color: lightgray">Job title:</label>
+            <div class="col-md-3">
+                <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="jobDropDown" DataTextField="position" DataValueField="job_id" runat="server" OnSelectedIndexChanged="jobDropDown_SelectedIndexChanged" />
+            </div>
+        </div>
+    </div>
 
-    <label>Job title:</label>
-    <asp:Label runat="server" ID="jobTitle" Text="" />
     <div class="row">
 
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <asp:DataList DataKeyField="applicant_id" BackColor="#d4d4d4" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
+            <asp:DataList EnableViewState="false" DataKeyField="applicant_id" BackColor="#d4d4d4" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
                 <HeaderTemplate>
-                    <label style="text-align: center; color: lightgray">Applicants</label>
+                    <label class="text-center" style="text-align: center; color: lightgray">Applicants</label>
                 </HeaderTemplate>
                 <HeaderStyle BackColor="#1C5E55" />
                 <ItemTemplate>
@@ -21,7 +27,7 @@
         </div>
 
         <div class="col-md-4">
-            <asp:DetailsView runat="server" ID="candidateDetails" BackColor="#d4d4d4" CssClass="table" AutoGenerateRows="false">
+            <asp:DetailsView runat="server" ID="candidateDetails" BackColor="#d4d4d4" CssClass="table" AutoGenerateRows="false" EnableViewState="false">
                 <HeaderTemplate>
                     <lable>Selected Applicant</lable>
                 </HeaderTemplate>
@@ -90,7 +96,7 @@
 
         <div class="">
             <object />
-            <iframe src="TestIframe.aspx" id="wordResume" runat="server" style="width: 40%; height: 400px" ></iframe>
+            <iframe src="TestIframe.aspx" id="wordResume" runat="server" style="width: 40%; height: 400px"></iframe>
         </div>
 
 
