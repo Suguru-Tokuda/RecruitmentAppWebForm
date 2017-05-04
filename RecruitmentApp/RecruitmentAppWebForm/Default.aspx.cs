@@ -1,4 +1,5 @@
-﻿using RecruitmentAppWebForm.Models;
+﻿using Microsoft.AspNet.Identity;
+using RecruitmentAppWebForm.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace RecruitmentAppWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             Models.User.checkUserLogin(this.Page);
+            Session["applicant_id"] = ApplicantDB.getRegisteredApplicant(Context.User.Identity.GetUserName());
         }
 
         protected void searchJobs(object sender, EventArgs e)

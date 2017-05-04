@@ -59,23 +59,34 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <% if((bool)Session["loggedIn"] == true) {%>
+<%--                                <% if ((bool)Session["loggedIn"] == true)
+                                    {%>
                                 <li runat="server" class="dropdown">
-                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile&nbsp;<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile&nbsp;<span class="caret"></span></a>
                                     <ul>
                                         <a style="color: white" href="~/Account/Profile">Profile</a>
                                         <a style="color: white" href="~/Account/Profile/ApplicationStatus">Application Status</a>
                                         <a style="color: white" href="~/Account/Profile/Resume">Resume</a>
                                     </ul>
                                 </li>
-                                <% } else { %>
+                                <% }--%>
+<%--                                else
+                                { %>--%>
                                 <li><a style="color: white" runat="server" href="~/Account/Register">Register</a></li>
                                 <li><a style="color: white" runat="server" href="~/Account/Login">Log in</a></li>
-                                <% } %>
+<%--                                <% } %>--%>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
+                                <li runat="server" class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile&nbsp;<span class="caret"></span></a>
+                                    <ul>
+                                        <a style="color: white" href="~/Account/Profile">Profile</a>
+                                        <a style="color: white" href="~/Account/Profile/ApplicationStatus">Application Status</a>
+                                        <a style="color: white" href="~/Account/Profile/Resume">Resume</a>
+                                    </ul>
+                                </li>
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
@@ -88,10 +99,13 @@
         </div>
         <div class="container body-content">
             <div class="containers">
-                <div class="jumbotron col-md-12" style="background-color: transparent; color: lightgray"><h1 style="text-align: center">RecruitmentApp</h1></div>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder></div>
-<%--            <hr />
+                <div class="jumbotron col-md-12" style="background-color: transparent; color: lightgray">
+                    <h1 style="text-align: center">RecruitmentApp</h1>
+                </div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <%--            <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>--%>
