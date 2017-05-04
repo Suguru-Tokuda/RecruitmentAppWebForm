@@ -22,6 +22,15 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.DropDownList companyList;
         
         /// <summary>
+        /// companyNotInList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox companyNotInList;
+        
+        /// <summary>
         /// companyName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,13 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.TextBox position;
         
         /// <summary>
-        /// category col-md-4 col-sm-4 col-xs-4 control.
+        /// industry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList category col-md-4 col-sm-4 col-xs-4;
+        protected global::System.Web.UI.WebControls.DropDownList industry;
         
         /// <summary>
         /// salary_min control.
@@ -101,5 +110,14 @@ namespace RecruitmentAppWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox qualification;
+        
+        /// <summary>
+        /// registerCompanyBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button registerCompanyBtn;
     }
 }

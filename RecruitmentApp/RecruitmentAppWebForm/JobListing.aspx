@@ -124,22 +124,23 @@
 
                     <Fields>
 
-                        <asp:BoundField DataField="job_id" HeaderText="job_id" SortExpression="job_id" />
-                        <asp:BoundField DataField="company_id" HeaderText="company_id" SortExpression="company_id" />
-                        <asp:BoundField DataField="position" HeaderText="position" SortExpression="position" />
-                        <asp:BoundField DataField="company_name" HeaderText="company_name" SortExpression="company_name" />
-                        <asp:BoundField DataField="category" HeaderText="category" SortExpression="category" />
-                        <asp:BoundField DataField="emp_id" HeaderText="emp_id" SortExpression="emp_id" />
-                        <asp:BoundField DataField="salary_min" HeaderText="salary_min" SortExpression="salary_min" />
-                        <asp:BoundField DataField="salary_max" HeaderText="salary_max" SortExpression="salary_max" />
-                        <asp:BoundField DataField="level" HeaderText="level" SortExpression="level" />
-                        <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
-                        <asp:BoundField DataField="responsibility" HeaderText="responsibility" SortExpression="responsibility" />
-                        <asp:BoundField DataField="qualification" HeaderText="qualification" SortExpression="qualification" />
-                        <asp:BoundField DataField="posting_date" HeaderText="posting_date" SortExpression="posting_date" />
-                        <asp:CheckBoxField DataField="filled" HeaderText="filled" SortExpression="filled" />
-                        <asp:BoundField DataField="jobCity" HeaderText="jobCity" SortExpression="jobCity" />
-                        <asp:BoundField DataField="jobState" HeaderText="jobState" SortExpression="jobState" />
+                        <asp:BoundField DataField="job_id" HeaderText="Job ID" SortExpression="job_id" />
+                        <asp:BoundField DataField="company_id" HeaderText="Company ID" SortExpression="company_id" />
+                        <asp:BoundField DataField="position" HeaderText="Position name" SortExpression="position" />
+                        <asp:BoundField DataField="company_name" HeaderText="Company" SortExpression="company_name" />
+                        <asp:BoundField DataField="category" HeaderText="Industry" SortExpression="category" />
+                        <asp:BoundField DataField="salary_min" HeaderText="Minimum salary" SortExpression="salary_min"  />
+                        <asp:BoundField DataField="salary_max" HeaderText="Maximum salary" SortExpression="salary_max" />
+                        <asp:BoundField DataField="level" HeaderText="Job level" SortExpression="level" />
+                        <asp:BoundField DataField="description" HeaderText="Description" SortExpression="description" />
+                        <asp:BoundField DataField="responsibility" HeaderText="Responsibilities" SortExpression="responsibility" />
+                        <asp:BoundField DataField="qualification" HeaderText="Qualification" SortExpression="qualification" />
+                        <asp:BoundField DataField="posting_date" HeaderText="Posting date" SortExpression="posting_date" />
+                        <asp:TemplateField HeaderText="Location">
+                            <ItemTemplate>
+                                <asp:Label runat="server" Text='<%# Eval("jobCity") + ", " + Eval("jobState") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Fields>
 
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

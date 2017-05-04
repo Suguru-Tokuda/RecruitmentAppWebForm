@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+
 
 namespace RecruitmentAppWebForm.Models
 {
@@ -58,8 +60,8 @@ namespace RecruitmentAppWebForm.Models
         public static List<Job> displayJobs(int jobId)
         {
             List<Job> retVal = new List<Job>();
-            string sql = "SELECT DISTINCT* FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id where j.job_id= @jobId";
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            string sql = "SELECT DISTINCT* FROM jobs AS j JOIN companies AS c ON j.company_id = c.company_id where j.job_id= @jobId AND j.filled = 0";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -144,7 +146,7 @@ namespace RecruitmentAppWebForm.Models
                     + "OR c.zip = '" + location + "' ";
             }
 
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -182,7 +184,7 @@ namespace RecruitmentAppWebForm.Models
             string retVal = null;
             string sql = "SELECT * FROM jobs WHERE job_id = " + job_id;
 
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -198,13 +200,29 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-        private static String getConnectionString()
+        public static void enterJob(string position, string category, int salary_min, int salary_max, string level, string description, string responsibility, string qualification, DateTime posting_date)
         {
-            return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string sql = "INSERT INTO jobs (position, category, salary_min, salary_max, level, description, responsibility, qualification, posting_date, filled) VLAUES (@position, @category, @salary_min, @salary_max, @level, @description, @responsibility, @qualification, @posting_date, @filled)";
+
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@position", position);
+                    cmd.Parameters.AddWithValue("@category", category);
+                    cmd.Parameters.AddWithValue("@salary_min", salary_min);
+                    cmd.Parameters.AddWithValue("@salary_max", salary_max);
+                    cmd.Parameters.AddWithValue("@level", level);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@responsibility", responsibility);
+                    cmd.Parameters.AddWithValue("@qualification", qualification);
+                    cmd.Parameters.AddWithValue("@posting_date", posting_date);
+                    cmd.Parameters.AddWithValue("@", posting_date);
+                    cmd.Parameters.AddWithValue("@filled", 0);
+                    con.Close();
+                }
+            }
         }
-
-
-
-
     }
 }
