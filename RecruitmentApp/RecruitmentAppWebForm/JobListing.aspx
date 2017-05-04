@@ -36,7 +36,7 @@
             <div class="text-center">
                 <asp:Label ID="lblApplication" CssClass="glyphicon-align-center" runat="server" Visible="false" Text="">
                     <h1 style="color:burlywood">
-                        Your application has been submitted! You should receive and email shortly. Click here to view all your submissions
+                        Your application has been submitted! You should receive and email shortly. <asp:HyperLink runat="server" NavigateUrl="~/Apply.aspx">Click here to view all your submissions</asp:HyperLink> 
                     </h1>
                 </asp:Label>
                 <asp:Label ID="lblAppError" CssClass="glyphicon-align-center" runat="server" Visible="false" Text="">

@@ -20,7 +20,7 @@ namespace RecruitmentAppWebForm.Models
         {
             List<Job> retVal = new List<Job>();
             string sql = "SELECT DISTINCT* FROM jobs AS j JOIN applications AS a ON j.job_id = a.job_id where a.applicant_id  = @applicantId";
-            using (SqlConnection con = new SqlConnection(getConnectionString()))
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
