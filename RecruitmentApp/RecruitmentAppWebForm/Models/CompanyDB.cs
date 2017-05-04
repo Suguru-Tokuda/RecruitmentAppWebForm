@@ -13,9 +13,7 @@ namespace RecruitmentAppWebForm.Models
         public static List<Company> getAllCompanies()
         {
             List<Company> retVal = new List<Company>();
-
             string sql = "SELECT * FROM companies";
-
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -26,17 +24,16 @@ namespace RecruitmentAppWebForm.Models
                     while (dr.Read())
                     {
                         company = new Company();
-                        company.company_id = (int)dr["company_id"];
-
-
-
+                        company.company_id = Convert.ToInt32(dr["company_id"].ToString());
+                        company.company_name = dr["company_name"].ToString();
+                        company.street = dr["street"].ToString();
+                        company.state = dr["state"].ToString();
+                        company.zip = dr["zip"].ToString();
+                        retVal.Add(company);
                     }
                     dr.Close();
                 }
             }
-
-
-
             return retVal;
         }
 

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RecruitmentAppWebForm.Models
 {
-    public class Applicant
+    public class Applicant : User
     {
         public int applicant_id { get; set; }
         public string first_name { get; set; }
@@ -20,7 +20,6 @@ namespace RecruitmentAppWebForm.Models
         public string preference { get; set; }
         public int current_salary { get; set; }
         public int desired_salary { get; set; }
-        public bool loggedIn { get; set; }
 
     }
 }
