@@ -25,7 +25,10 @@ namespace RecruitmentAppWebForm
             lblApplication.Visible = false;
             lblAppError.Visible = false;
 
-
+            if (!IsPostBack)
+            {
+                lstViewJobs.SelectedIndex = 0;
+            }
 
         }
 
@@ -90,11 +93,13 @@ namespace RecruitmentAppWebForm
         {
 
             bool status = (bool)Session["loggedIn"];
-            //if (SignInStatus.Success==0)
-            //{
-            //    Session["loggedIn"] = true;
-            //    status = true;
-            //}
+
+
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                    Session["loggedIn"] = true;
+                    status = true;
+            }
             if (status == false)
             {
                 Response.Redirect("/Account/Login.aspx");
@@ -108,6 +113,7 @@ namespace RecruitmentAppWebForm
             {
                 insertApplication(job_id, applicant_id);
                 lblApplication.Visible = true;
+                Email.sendProductRegistrationEmail(applicant_id, job_id );
             }
             else
             {
@@ -151,6 +157,7 @@ namespace RecruitmentAppWebForm
             }
             return retVal;
         }
+
 
         private static string GetConnectionString()
         {
