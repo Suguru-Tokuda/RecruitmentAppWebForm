@@ -243,15 +243,16 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-        public static void enterJob(string position, string industry, int salary_min, int salary_max, string level, string description, string responsibility, string qualification, DateTime posting_date)
+        public static void enterJob(int company_id, string position, string industry, int salary_min, int salary_max, string level, string description, string responsibility, string qualification, DateTime posting_date)
         {
-            string sql = "INSERT INTO jobs (company_id, position, category, salary_min, salary_max, level, description, responsibility, qualification, posting_date, filled) VALUES (@position, @category, @salary_min, @salary_max, @level, @description, @responsibility, @qualification, @posting_date, @filled)";
+            string sql = "INSERT INTO jobs (company_id, position, category, salary_min, salary_max, level, description, responsibility, qualification, posting_date, filled) VALUES (@company_id, @position, @category, @salary_min, @salary_max, @level, @description, @responsibility, @qualification, @posting_date, @filled)";
 
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
+                    cmd.Parameters.AddWithValue("@company_id", company_id);
                     cmd.Parameters.AddWithValue("@position", position);
                     cmd.Parameters.AddWithValue("@category", industry);
                     cmd.Parameters.AddWithValue("@salary_min", salary_min);

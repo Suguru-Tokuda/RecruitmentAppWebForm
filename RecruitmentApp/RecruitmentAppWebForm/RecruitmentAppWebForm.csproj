@@ -227,6 +227,7 @@
     <Content Include="JobListing.aspx" />
     <Content Include="Apply.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="RegisterCompany.aspx" />
     <Content Include="RegisterJob.aspx" />
     <Content Include="ResumeUpload.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -442,6 +443,13 @@
     <Compile Include="Models\ResumesDB.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterCompany.aspx.cs">
+      <DependentUpon>RegisterCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterCompany.aspx.designer.cs">
+      <DependentUpon>RegisterCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegisterJob.aspx.cs">
       <DependentUpon>RegisterJob.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

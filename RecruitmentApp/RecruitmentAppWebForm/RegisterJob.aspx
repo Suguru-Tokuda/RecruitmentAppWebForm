@@ -12,7 +12,8 @@
         </div>
 
         <div class="form-group">
-            <asp:Label Font-Bold="true" ForeColor="#ffffff" CssClass="register col-md-2 control-label" runat="server">Not in the list</asp:Label>
+            <a href="/RegisterCompany.aspx" >Not in the list? Register a new company</a>
+<%--            <asp:Label Font-Bold="true" ForeColor="#ffffff" CssClass="register col-md-2 control-label" runat="server">Not in the list? Register a new company</asp:Label>
             <div class="col-md-10">
                 <asp:CheckBox runat="server" ID="companyNotInList" OnCheckedChanged="companyNotInList_CheckedChanged" AutoPostBack="true" />
                 <asp:TextBox runat="server" ID="companyText" Placeholder="Company name" CssClass="form-control" />
@@ -20,7 +21,7 @@
                     { %>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="companyText" CssClass="text-danger" ErrorMessage="Company name is required" Diplay="dynamic" />
                 <%} %>
-            </div>
+            </div>--%>
         </div>
 
         <div class="form-group">

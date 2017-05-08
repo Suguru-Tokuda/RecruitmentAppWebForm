@@ -22,24 +22,6 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.DropDownList companyList;
         
         /// <summary>
-        /// companyNotInList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox companyNotInList;
-        
-        /// <summary>
-        /// companyText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyText;
-        
-        /// <summary>
         /// position control.
         /// </summary>
         /// <remarks>
