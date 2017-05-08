@@ -59,7 +59,7 @@
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-<%--                                <% if ((bool)Session["loggedIn"] == true)
+                                <%--                                <% if ((bool)Session["loggedIn"] == true)
                                     {%>
                                 <li runat="server" class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile&nbsp;<span class="caret"></span></a>
@@ -70,23 +70,33 @@
                                     </ul>
                                 </li>
                                 <% }--%>
-<%--                                else
+                                <%--                                else
                                 { %>--%>
-                                <li><a style="color: white" runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a style="color: white" runat="server" href="~/Account/Login">Log in</a></li>
-<%--                                <% } %>--%>
+
+                                <li><a style="color: white" runat="server" href="/Account/Register">Register</a></li>
+                                <li><a style="color: white" runat="server" href="/Account/Login">Log in</a></li>
+                                <%--                                <% } %>--%>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li runat="server" class="dropdown">
+                                <%--                                <li runat="server" class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile&nbsp;<span class="caret"></span></a>
                                     <ul>
-                                        <a style="color: white" href="~/Account/Profile">Profile</a>
-                                        <a style="color: white" href="~/Account/Profile/ApplicationStatus">Application Status</a>
-                                        <a style="color: white" href="~/Account/Profile/Resume">Resume</a>
+                                        <a style="color: white" href="/Account/Profile">Profile</a>
+                                        <a style="color: white" href="/Apply">Application Status</a>
+                                        <a style="color: white" href="/ResumeUpload">Resume</a>
+                                        <a style="color: white" href="/DisplayCandidates">Display Candidates</a>
                                     </ul>
-                                </li>
+                                </li>--%>
+                                <li><a style="color: white" href="/Account/Profile">Profile</a></li>
+                                <li><a style="color: white" href="/Apply">Application Status</a></li>
+                                <li><a style="color: white" href="/ResumeUpload">Resume</a></li>
+                                <% if (Context.User.Identity.GetUserName() == "admin@gmail.com")
+                                    {%>
+                                <li><a style="color: white" href="/DisplayCandidates">Display Candidates</a></li>
+
+                                <%}%>
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="JobListing.aspx.cs" Inherits="RecruitmentAppWebForm.WebForm1" %>
+﻿<%@ Page Title="Job Listings" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="JobListing.aspx.cs" Inherits="RecruitmentAppWebForm.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="col-md-12">
@@ -35,7 +35,7 @@
         <div class="table table-bordered table-condensed">
             <div class="text-center">
                 <asp:Label ID="lblApplication" CssClass="glyphicon-align-center" runat="server" Visible="false" Text="">
-                    <h1 style="color:burlywood">
+                    <h1 style="color:#1C5E55">
                         Your application has been submitted! You should receive and email shortly. <asp:HyperLink runat="server" NavigateUrl="~/Apply.aspx">Click here to view all your submissions</asp:HyperLink> 
                     </h1>
                 </asp:Label>
@@ -46,7 +46,7 @@
                 </asp:Label>
             </div>
             <div class="col-md-6 ">
-                <div class="table table-bordered table-condensed" style="background-color:lightgray;height:450px">
+                <div class="table table-bordered table-condensed" style="background-color:lightgray">
                     <asp:ListView ID="lstViewJobs" OnSelectedIndexChanging="lstViewJobs_SelectedIndexChanging" DataKeyNames="job_id" runat="server">
                     
                         <ItemTemplate >

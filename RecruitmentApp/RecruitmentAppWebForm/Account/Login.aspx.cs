@@ -42,10 +42,13 @@ namespace RecruitmentAppWebForm.Account
                     case SignInStatus.Success:
                         if (typeOfUser.Equals("admin"))
                         {
+                            Session["loggedIn"] = true; 
                             IdentityHelper.RedirectToReturnUrl(Request.QueryString["DisplayCandidates.aspx"], Response);
+
                         } else if (typeOfUser.Equals("applicant"))
                         {
-                            IdentityHelper.RedirectToReturnUrl(Request.QueryString["Default.aspx"], Response);
+                            Session["loggedIn"] = true;
+                            IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         }
                         break;
                     case SignInStatus.LockedOut:
