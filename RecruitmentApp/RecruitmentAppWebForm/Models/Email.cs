@@ -12,10 +12,12 @@ namespace RecruitmentAppWebForm.Models
 
         {
             string jobname = JobsDB.getJobTitle(jobID);
-            MailMessage msg = new MailMessage("recruitmentapp2017@gmail.com", ApplicantDB.getApplicant(applicantID).email, "Job Application Confirmation",
+            MailAddress from = new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
+            MailMessage msg = new MailMessage(from.ToString(), ApplicantDB.getApplicant(applicantID).email, "Job Application Confirmation - "+ jobID,
                 "Thank you for applying for the position: " + JobsDB.getJobTitle(jobID) + " \nYou will be notified of any future updates.\n\nThank you,\n Recruitment team");
 
             SmtpClient client = new SmtpClient("smtp.gmail.com");
+            msg.Sender= new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
             client.Credentials = new System.Net.NetworkCredential()
             {
                 UserName = "recruitmentapp2017@gmail.com",
