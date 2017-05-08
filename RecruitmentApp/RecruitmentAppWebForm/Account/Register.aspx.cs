@@ -31,6 +31,7 @@ namespace RecruitmentAppWebForm.Account
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
                 signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                Session["loggedIn"] = true;
                 Session["applicant_id"] = ApplicantDB.getRegisteredApplicant(Email.Text);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
 

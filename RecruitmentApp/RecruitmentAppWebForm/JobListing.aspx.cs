@@ -1,4 +1,5 @@
-﻿using RecruitmentAppWebForm.Models;
+﻿using Microsoft.AspNet.Identity.Owin;
+using RecruitmentAppWebForm.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +25,10 @@ namespace RecruitmentAppWebForm
             lblApplication.Visible = false;
             lblAppError.Visible = false;
 
-
+            if (!IsPostBack)
+            {
+                lstViewJobs.SelectedIndex = 0;
+            }
 
         }
 
@@ -87,19 +91,29 @@ namespace RecruitmentAppWebForm
 
         protected void btnApply_Click(object sender, EventArgs e)
         {
-            //if (Session["applicant_id"] != null)
-            //{
 
-            //}
+            bool status = (bool)Session["loggedIn"];
+
+
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                    Session["loggedIn"] = true;
+                    status = true;
+            }
+            if (status == false)
+            {
+                Response.Redirect("/Account/Login.aspx");
+                return;
+            }
             int job_id = (int)Session["job_id"];
-            //int applicant_id = (int)Session["applicant_id"];
-           // Session["applicant_id"] = 1000;
-            int applicant_id = (int)Session["applicant_id"]; ;
+;
+            int applicant_id = (int)Session["applicant_id"];
             
             if (!hasAlreadyApplied(job_id,applicant_id))
             {
                 insertApplication(job_id, applicant_id);
                 lblApplication.Visible = true;
+                Email.sendProductRegistrationEmail(applicant_id, job_id );
             }
             else
             {
@@ -143,6 +157,7 @@ namespace RecruitmentAppWebForm
             }
             return retVal;
         }
+
 
         private static string GetConnectionString()
         {

@@ -435,6 +435,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyDB.cs" />
     <Compile Include="Models\DBConnection.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />

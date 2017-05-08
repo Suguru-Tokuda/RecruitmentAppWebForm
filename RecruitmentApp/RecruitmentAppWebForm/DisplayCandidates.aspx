@@ -14,7 +14,7 @@
     <div class="row">
 
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <asp:DataList EnableViewState="false" DataKeyField="applicant_id" BackColor="#d4d4d4" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
+            <asp:DataList EnableViewState="true" DataKeyField="applicant_id" BackColor="#d4d4d4" OnSelectedIndexChanged="applicantList_SelectedIndexChanged" CssClass="table-bordered" ID="applicantList" runat="server">
                 <HeaderTemplate>
                     <label class="text-center" style="text-align: center; color: lightgray">Applicants</label>
                 </HeaderTemplate>
