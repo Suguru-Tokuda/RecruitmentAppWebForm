@@ -18,6 +18,7 @@
                 <HeaderTemplate>
                     <label class="text-center" style="text-align: center; color: lightgray">Applicants</label>
                 </HeaderTemplate>
+
                 <HeaderStyle BackColor="#1C5E55" />
                 <ItemTemplate>
                     <asp:LinkButton Text='<%# Eval("first_name") + " " + Eval("last_name") %>' CommandName="Select" runat="server" />
@@ -31,6 +32,11 @@
                 <HeaderTemplate>
                     <lable>Selected Applicant</lable>
                 </HeaderTemplate>
+                <FooterTemplate>
+                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Select for Interview" />
+                    <p>Date: <input type="text"class="hasDatepicker"></p>
+                </FooterTemplate>
+                <FooterStyle BackColor="#1C5E55" />
                 <HeaderStyle BackColor="#1C5E55" Font-Bold="true" ForeColor="lightgray" />
                 <CommandRowStyle BackColor="lightgray" />
 
@@ -91,7 +97,9 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Fields>
+
             </asp:DetailsView>
+
         </div>
 
         <div class="">
