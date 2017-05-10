@@ -118,7 +118,7 @@
                                 <% if (Context.User.Identity.GetUserName() == "admin@gmail.com")
                                     {%>
                                 <li><a style="color: white" href="/DisplayCandidates">Display Candidates</a></li>
-
+                                <li><a style="color: white" href="/RegisterJob">Register job</a></li>
                                 <%}%>
                                 <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>

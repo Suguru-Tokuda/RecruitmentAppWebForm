@@ -21,7 +21,7 @@ namespace RecruitmentAppWebForm
 
         protected void registerCompanyBtn_Click(object sender, EventArgs e)
         {
-            if (CompanyDB.confirmCompanyExists(companyName.Text))
+            if (!CompanyDB.confirmCompanyExists(companyName.Text))
             {
                 CompanyDB.registerCompany(companyName.Text, street.Text, city.Text, zip.Text);
                 Response.Redirect("/RegisterJob.aspx", false);

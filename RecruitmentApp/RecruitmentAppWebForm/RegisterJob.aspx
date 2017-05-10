@@ -12,8 +12,9 @@
         </div>
 
         <div class="form-group">
-            <a href="/RegisterCompany.aspx" >Not in the list? Register a new company</a>
-<%--            <asp:Label Font-Bold="true" ForeColor="#ffffff" CssClass="register col-md-2 control-label" runat="server">Not in the list? Register a new company</asp:Label>
+            <div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                <a href="/RegisterCompany.aspx">Not in the list? Register a new company</a>
+                <%--            <asp:Label Font-Bold="true" ForeColor="#ffffff" CssClass="register col-md-2 control-label" runat="server">Not in the list? Register a new company</asp:Label>
             <div class="col-md-10">
                 <asp:CheckBox runat="server" ID="companyNotInList" OnCheckedChanged="companyNotInList_CheckedChanged" AutoPostBack="true" />
                 <asp:TextBox runat="server" ID="companyText" Placeholder="Company name" CssClass="form-control" />
@@ -22,6 +23,7 @@
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="companyText" CssClass="text-danger" ErrorMessage="Company name is required" Diplay="dynamic" />
                 <%} %>
             </div>--%>
+            </div>
         </div>
 
         <div class="form-group">
@@ -37,7 +39,7 @@
             <div class="col-md-6 col-sm-6 col-xs-6">
 
                 <asp:DropDownList runat="server" ID="industry" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" InitialValue="--Select industry--" ErrorMessage="Required" CssClass="text-danger" ControlToValidate="industry" Display="Dynamic" />
+                <asp:RequiredFieldValidator runat="server" InitialValue="0" ErrorMessage="Select industry" CssClass="text-danger" ControlToValidate="industry" Display="Dynamic" />
             </div>
         </div>
 
@@ -78,9 +80,9 @@
         <div class="form-group">
             <asp:Label Font-Bold="true" ForeColor="#ffffff" CssClass="register col-md-2 control-label" runat="server">Responsibilities:</asp:Label>
             <div class="col-md-6">
-            <asp:TextBox runat="server" ID="responsibility" Placeholder="Separate by ;" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="responsibility" Placeholder="Separate by ;" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="responsibility" CssClass="text-danger" ErrorMessage="Responsibilities are required" Diplay="dynamic" />
-                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -93,6 +95,15 @@
 
         <div class="form-group">
             <asp:Button CssClass="btn btn-secondary col-md-offset-2" Text="Register job" runat="server" ID="registerCompanyBtn" OnClick="registerCompanyBtn_Click" />
+        </div>
+        <div class="form-group">
+            <asp:Label CssClass="text-danger" runat="server" ID="sqlErrorMsg" />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-sm-offset-1 xs-offset-1">
+                <asp:Label Style="color: lightgreen" runat="server" ID="confirmationMsg" />
+            </div>
         </div>
     </div>
 </asp:Content>
