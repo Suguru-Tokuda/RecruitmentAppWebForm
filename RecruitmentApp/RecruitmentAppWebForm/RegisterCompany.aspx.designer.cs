@@ -10,88 +10,61 @@
 namespace RecruitmentAppWebForm {
     
     
-    public partial class RegisterJob {
+    public partial class RegisterCompany {
         
         /// <summary>
-        /// companyList control.
+        /// companyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList companyList;
+        protected global::System.Web.UI.WebControls.TextBox companyName;
         
         /// <summary>
-        /// position control.
+        /// sqlErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox position;
+        protected global::System.Web.UI.WebControls.Label sqlErrorMsg;
         
         /// <summary>
-        /// industry control.
+        /// street control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList industry;
+        protected global::System.Web.UI.WebControls.TextBox street;
         
         /// <summary>
-        /// salary_min control.
+        /// city control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox salary_min;
+        protected global::System.Web.UI.WebControls.TextBox city;
         
         /// <summary>
-        /// salary_max control.
+        /// state control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox salary_max;
+        protected global::System.Web.UI.WebControls.DropDownList state;
         
         /// <summary>
-        /// jobLevel control.
+        /// zip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList jobLevel;
-        
-        /// <summary>
-        /// description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox description;
-        
-        /// <summary>
-        /// responsibility control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox responsibility;
-        
-        /// <summary>
-        /// qualification control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox qualification;
+        protected global::System.Web.UI.WebControls.TextBox zip;
         
         /// <summary>
         /// registerCompanyBtn control.

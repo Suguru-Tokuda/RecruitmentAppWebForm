@@ -19,8 +19,8 @@ namespace RecruitmentAppWebForm
             industry.DataBind();
             jobLevel.DataSource = this.getJobLevels();
             jobLevel.DataBind();
-            if (!this.IsPostBack)
-                this.companyText.Enabled = false;
+            //if (!this.IsPostBack)
+            //    this.companyText.Enabled = false;
         }
 
         protected List<string> getIndustries()
@@ -62,33 +62,24 @@ namespace RecruitmentAppWebForm
 
 
 
-        protected void companyNotInList_CheckedChanged(object sender, EventArgs e)
-        {
-            if (companyText.Enabled == false)
-            {
-                companyText.Enabled = true;
-                companyList.Enabled = false;
-            }
-            else if (companyText.Enabled == true)
-            {
-                companyText.Enabled = false;
-                companyList.Enabled = true;
-            }
+        //protected void companyNotInList_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (companyText.Enabled == false)
+        //    {
+        //        companyText.Enabled = true;
+        //        companyList.Enabled = false;
+        //    }
+        //    else if (companyText.Enabled == true)
+        //    {
+        //        companyText.Enabled = false;
+        //        companyList.Enabled = true;
+        //    }
 
-        }
+        //}
 
         protected void registerCompanyBtn_Click(object sender, EventArgs e)
         {
-            string companyName;
-            if (!companyText.Enabled)
-            {
-                companyName = companyList.Text;
-            } else if (companyText.Enabled)
-            {
-                companyName = companyText.Text;
-            }
-            int companyID;
-            JobsDB.enterJob(position.Text, industry.Text, Convert.ToInt32(salary_min.Text), Convert.ToInt32(salary_max.Text), jobLevel.Text, description.Text, responsibility.Text.Trim(), qualification.Text.Trim().Replace(" ", ""), DateTime.Now.Date);
+            JobsDB.enterJob(Convert.ToInt32(companyList.Text), position.Text, industry.Text, Convert.ToInt32(salary_min.Text), Convert.ToInt32(salary_max.Text), jobLevel.Text, description.Text, responsibility.Text.Trim(), qualification.Text.Trim().Replace(" ", ""), DateTime.Today);
         }
     }
 }

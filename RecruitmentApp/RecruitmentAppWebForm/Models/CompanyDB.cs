@@ -36,5 +36,48 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
         }
+
+        public static bool confirmCompanyExists(string company_name)
+        {
+            bool retVal = false;
+            string sql = "SELECT * FROM companies WHERE UPPER(company_name) LIKE '%' + UPPER(@company_name) + '%'";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@company_name", company_name);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        retVal = true;
+                    }
+                    dr.Close();
+                }
+            }
+            return retVal;
+        }
+
+
+        public static void registerCompany(string companyName, string street, string city, string zip)
+        {
+            string sql = "INSERT INTO companies (companyName, street, city, zip) VALUES (@companyName, @street, @city, @zip)";
+
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@companyName", companyName);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@zip", zip);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
+
     }
 }
