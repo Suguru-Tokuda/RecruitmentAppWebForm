@@ -51,9 +51,7 @@ namespace RecruitmentAppWebForm
 
         protected void jobDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = jobDropDown.SelectedIndex;
-
-            applicantList.DataSource = ApplicantDB.getApplicants(index);
+            applicantList.DataSource = ApplicantDB.getApplicants(Convert.ToInt32(jobDropDown.SelectedValue));
             applicantList.DataBind();
 
         }
