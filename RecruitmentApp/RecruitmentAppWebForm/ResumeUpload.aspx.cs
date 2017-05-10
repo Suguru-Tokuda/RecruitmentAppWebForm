@@ -13,7 +13,6 @@ namespace RecruitmentAppWebForm
 {
     public partial class ResumeUpload : System.Web.UI.Page
     {
-        Applicant applicant;
         protected void Page_Load(object sender, EventArgs e)
         {
             Models.User.checkUserLogin(Page);
@@ -29,8 +28,8 @@ namespace RecruitmentAppWebForm
         protected void resumeUploadBtn_Click(object sender, EventArgs e)
         {
             //get applicant_id from the session
-            //int applicant_id = (int)HttpContext.Current.Session["applicant_id"];
-            int applicant_id = 1000;
+            int applicant_id = (int)HttpContext.Current.Session["applicant_id"];
+            //int applicant_id = 1000;
             //put data into the DB
             ResumesDB.uploadResume(resumeData, applicant_id);
         }

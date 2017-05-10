@@ -32,6 +32,7 @@ namespace RecruitmentAppWebForm.Models
                         retVal.last_name = dr["last_name"].ToString();
                         retVal.phone = dr["phone"].ToString();
                         retVal.email = dr["email"].ToString();
+                        retVal.street = dr["street"].ToString();
                         retVal.city = dr["city"].ToString();
                         retVal.state = dr["state"].ToString();
                         retVal.zip = dr["zip"].ToString();
@@ -68,6 +69,27 @@ namespace RecruitmentAppWebForm.Models
                         applicant.applicant_id = Convert.ToInt32(dr["applicant_id"].ToString());
                         retVal.Add(applicant);
                     }
+                }
+            }
+            return retVal;
+        }
+
+        public static int getApplicantIdByEmail(string email)
+        {
+            int retVal = 0;
+            string sql = "SELECT applicant_id FROM applicants WHERE email = @email";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        retVal = Convert.ToInt32(dr["applicant_id"].ToString());
+                    }
+                    con.Close();
                 }
             }
             return retVal;
@@ -149,7 +171,7 @@ namespace RecruitmentAppWebForm.Models
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
-                    cmd.Parameters.AddWithValue("email", email);
+                    cmd.Parameters.AddWithValue("@email", email);
                     SqlDataReader dr = cmd.ExecuteReader();
                     
                     while (dr.Read())
@@ -160,6 +182,34 @@ namespace RecruitmentAppWebForm.Models
             }
 
                 return retval;
+        }
+
+        public static void updateApplicant(int applicant_id, string first_name, string last_name, string phone, string email, string street, string city, string zip, string skills, string preference, int current_salary, int desired_salary)
+        {
+            string sql = "UPDATE applicants " +
+                         "SET first_name = @first_name, last_name = @last_name, phone = @phone, email = @email, street = @street, city = @city, zip = @zip, skills = @skills, preference = @preference, current_salary = @current_salary, desired_salary = @desired_salary " +
+                         "WHERE applicant_id = @applicant_id";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
+                    cmd.Parameters.AddWithValue("@first_name", first_name);
+                    cmd.Parameters.AddWithValue("@last_name", last_name);
+                    cmd.Parameters.AddWithValue("@phone", phone);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@zip", zip);
+                    cmd.Parameters.AddWithValue("@skills", skills);
+                    cmd.Parameters.AddWithValue("@preference", preference);
+                    cmd.Parameters.AddWithValue("@current_salary", current_salary);
+                    cmd.Parameters.AddWithValue("@desired_salary", desired_salary);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
 
 

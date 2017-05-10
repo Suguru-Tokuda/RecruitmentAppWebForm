@@ -51,7 +51,7 @@ namespace RecruitmentAppWebForm.Models
         }
 
 
-        private static string getResumeName(int applicant_id)
+        public static string getResumeName(int applicant_id)
         {
             string retVal = null;
             string sql = "SELECT title FROM resumes WHERE applicant_id = @applicant_id";

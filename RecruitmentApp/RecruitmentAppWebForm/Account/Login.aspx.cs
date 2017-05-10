@@ -17,12 +17,12 @@ namespace RecruitmentAppWebForm.Account
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            }
+            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+            //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            //if (!String.IsNullOrEmpty(returnUrl))
+            //{
+            //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            //}
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -48,6 +48,8 @@ namespace RecruitmentAppWebForm.Account
                         } else if (typeOfUser.Equals("applicant"))
                         {
                             Session["loggedIn"] = true;
+                            Session["applicant_id"] = ApplicantDB.getApplicantIdByEmail(Email.Text);
+                            int id = Convert.ToInt32(HttpContext.Current.Session["applicant_id"].ToString());
                             IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         }
                         break;
