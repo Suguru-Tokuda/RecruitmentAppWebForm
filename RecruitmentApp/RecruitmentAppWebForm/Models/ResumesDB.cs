@@ -41,15 +41,6 @@ namespace RecruitmentAppWebForm.Models
                     }
         }
 
-        public static void getResume(int applicant_id)
-        {
-
-            string fileName = getResumeName(applicant_id);
-            byte[] data = retrieveResumeData(applicant_id);
-
-            File.WriteAllBytes(fileName, data);
-        }
-
 
         public static string getResumeName(int applicant_id)
         {
@@ -58,7 +49,7 @@ namespace RecruitmentAppWebForm.Models
 
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
-                using (SqlCommand cmd = new SqlCommand(sql))
+                using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
                     con.Open();
@@ -67,7 +58,6 @@ namespace RecruitmentAppWebForm.Models
                         while(dr.Read())
                         {
                             retVal = dr["title"].ToString();
-                            retVal += ".docx";
                         }
                     }
                 }
@@ -75,18 +65,19 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-        private static byte[] retrieveResumeData(int applicant_id)
+        public static byte[] retrieveResumeData(int applicant_id)
         {
             byte[] retVal = null;
-            string sql = "SELECT data FROM resumes WHERE appliant_id = " + applicant_id;
+            string sql = "SELECT data FROM resumes WHERE applicant_id = @applicant_id";
 
             //FileStream fs = null;
 
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
-                using (SqlCommand cmd = new SqlCommand(sql))
+                using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
                     con.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -99,38 +90,6 @@ namespace RecruitmentAppWebForm.Models
                         con.Close();
                     }
                 }
-
-
-                //using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
-                //{
-                //    using (SqlCommand cmd = new SqlCommand(sql))
-                //    {
-                //        cmd.Connection = con;
-                //        con.Open();
-                //        using (SqlDataReader dr = cmd.ExecuteReader())
-                //        {
-                //            while(dr.Read())
-                //            {
-                //                int size = 1024 * 1024;
-                //                byte[] buffer = new byte[size];
-                //                int readBytes = 0;
-                //                int index = 4;
-                //                string title = dr["title"].ToString();
-
-                //                using (fs = new FileStream(title, FileMode.Create, FileAccess.Write, FileShare.None))
-                //                {
-                //                    while((readBytes = (int)dr.GetBytes(0, index, buffer, 0, size)) > 0)
-                //                    {
-                //                        fs.Write(buffer, 0, readBytes);
-                //                        index += readBytes;
-                //                    }
-                //                }
-                //            }
-                //            con.Close();
-                //        }
-                //    }
-                //}
-                //return fs;
             }
             return retVal;
 

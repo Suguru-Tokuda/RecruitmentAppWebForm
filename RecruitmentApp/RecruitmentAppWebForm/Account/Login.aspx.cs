@@ -12,7 +12,7 @@ namespace RecruitmentAppWebForm.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Models.User.checkUserLogin(Page);
+            //Models.User.checkUserLogin(Page, Response);
             Models.Administrator.checkAdminLogin(Page);
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
@@ -42,11 +42,13 @@ namespace RecruitmentAppWebForm.Account
                     case SignInStatus.Success:
                         if (typeOfUser.Equals("admin"))
                         {
+                            Session["user"] = new User();
                             Session["loggedIn"] = true; 
                             IdentityHelper.RedirectToReturnUrl(Request.QueryString["DisplayCandidates.aspx"], Response);
 
                         } else if (typeOfUser.Equals("applicant"))
                         {
+                            Session["user"] = new User();
                             Session["loggedIn"] = true;
                             Session["applicant_id"] = ApplicantDB.getApplicantIdByEmail(Email.Text);
                             int id = Convert.ToInt32(HttpContext.Current.Session["applicant_id"].ToString());

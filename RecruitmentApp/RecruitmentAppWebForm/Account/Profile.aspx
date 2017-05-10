@@ -7,34 +7,34 @@
 <%--        <asp:FormView runat="server" ID="applicantFormView">
             <ItemTemplate>--%>
                 <label style="color: white">First name</label>
-                <asp:TextBox runat="server" ID="firstName" CssClass="form-control" Text='<%# Eval("first_Name")%>' />
+                <asp:TextBox runat="server" ID="firstName" CssClass="form-control"/>
 
                 <label style="color: white">Last name</label>
-                <asp:TextBox runat="server" ID="lastName" CssClass="form-control" Text='<%# Eval("last_Name")%>' />
+                <asp:TextBox runat="server" ID="lastName" CssClass="form-control" />
 
                 <label style="color: white">Phone number</label>
-                <asp:TextBox runat="server" ID="phone" CssClass="form-control" Text='<%# Eval("phone")%>' />
+                <asp:TextBox runat="server" ID="phone" CssClass="form-control" />
 
                 <label style="color: white">Email</label>
-                <asp:TextBox runat="server" ID="email" CssClass="form-control" Text='<%# Eval("email")%>' />
+                <asp:TextBox runat="server" ID="email" CssClass="form-control"/>
 
                 <label style="color: white">Street</label>
-                <asp:TextBox runat="server" ID="street" CssClass="form-control" Text='<%# Eval("street")%>' />
+                <asp:TextBox runat="server" ID="street" CssClass="form-control"/>
 
                 <label style="color: white">City</label>
-                <asp:TextBox runat="server" ID="city" CssClass="form-control" Text='<%# Eval("city")%>' />
+                <asp:TextBox runat="server" ID="city" CssClass="form-control"/>
 
                 <label style="color: white">State</label>
-                <asp:TextBox runat="server" ID="state" CssClass="form-control" Text='<%# Eval("state")%>' />
+                <asp:TextBox runat="server" ID="state" CssClass="form-control" />
 
                 <label style="color: white">Zip</label>
-                <asp:TextBox runat="server" ID="zip" CssClass="form-control" Text='<%# Eval("zip")%>' />
+                <asp:TextBox runat="server" ID="zip" CssClass="form-control"/>
 
                 <label style="color: white">Skills</label>
-                <asp:TextBox runat="server" ID="skills" CssClass="form-control" Text='<%# Eval("skills")%>' TextMode="MultiLine" />
+                <asp:TextBox runat="server" ID="skills" CssClass="form-control" TextMode="MultiLine" />
 
                 <label style="color: white">Preferences</label>
-                <asp:TextBox runat="server" ID="preference" CssClass="form-control" Text='<%# Eval("preference")%>' TextMode="MultiLine" />
+                <asp:TextBox runat="server" ID="preference" CssClass="form-control" TextMode="MultiLine" />
 
                 <label style="color: white">Current salary</label>
                 <asp:TextBox runat="server" ID="currentSalary" CssClass="form-control" Text='<%# Eval("current_salary")%>' />

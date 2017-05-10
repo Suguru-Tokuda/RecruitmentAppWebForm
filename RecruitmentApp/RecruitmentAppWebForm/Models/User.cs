@@ -11,12 +11,12 @@ namespace RecruitmentAppWebForm.Models
         public static User user;
         public bool loggedIn { get; set; }
 
-        public static void checkUserLogin(Page page)
+        public static void checkUserLogin(Page page, HttpResponse response)
         {
             user = (User)HttpContext.Current.Session["user"];
             if (user == null)
             {
-                page.Session["loggedIn"] = false;
+                response.Redirect("/Default.aspx", false);
             }
             else
             {

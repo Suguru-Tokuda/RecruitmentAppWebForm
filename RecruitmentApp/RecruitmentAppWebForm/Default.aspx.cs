@@ -14,7 +14,7 @@ namespace RecruitmentAppWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Models.User.checkUserLogin(this.Page);
+            //Models.User.checkUserLogin(this.Page, Response);
             Session["applicant_id"] = ApplicantDB.getRegisteredApplicant(Context.User.Identity.GetUserName());
         }
 

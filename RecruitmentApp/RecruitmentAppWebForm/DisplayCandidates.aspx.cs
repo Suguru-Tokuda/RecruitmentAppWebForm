@@ -17,7 +17,7 @@ namespace RecruitmentAppWebForm
         {
             if (!IsPostBack)
             {
-                Models.User.checkUserLogin(Page);
+                //Models.User.checkUserLogin(Page, Response);
 
                 jobDropDown.DataSource = JobsDB.getAllOpenJobs();
                 jobDropDown.DataBind();

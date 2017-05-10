@@ -15,7 +15,7 @@ namespace RecruitmentAppWebForm
         {
             if (!IsPostBack)
             {
-                Models.User.checkUserLogin(this.Page);
+                //Models.User.checkUserLogin(this.Page, Response);
                 companyList.DataSource = CompanyDB.getAllCompanies();
                 companyList.DataBind();
                 industry.DataSource = this.getIndustries();

@@ -15,7 +15,7 @@ namespace RecruitmentAppWebForm.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Models.User.checkUserLogin(Page);
+            //Models.User.checkUserLogin(Page, Response);
             Applicant applicant;
             
             if (!IsPostBack)
