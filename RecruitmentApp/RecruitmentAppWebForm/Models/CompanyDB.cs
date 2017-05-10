@@ -61,14 +61,14 @@ namespace RecruitmentAppWebForm.Models
 
         public static void registerCompany(string companyName, string street, string city, string zip)
         {
-            string sql = "INSERT INTO companies (companyName, street, city, zip) VALUES (@companyName, @street, @city, @zip)";
+            string sql = "INSERT INTO companies (company_name, street, city, zip) VALUES (@company_name, @street, @city, @zip)";
 
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
-                    cmd.Parameters.AddWithValue("@companyName", companyName);
+                    cmd.Parameters.AddWithValue("@company_name", companyName);
                     cmd.Parameters.AddWithValue("@street", street);
                     cmd.Parameters.AddWithValue("@city", city);
                     cmd.Parameters.AddWithValue("@zip", zip);

@@ -36,8 +36,9 @@ input[type="select"] {
         padding: 0;
     }
 }
+
 h1 {
-    color: crimson;
+    color: lawngreen;
 }
 
 .homepage {

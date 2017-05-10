@@ -1,6 +1,7 @@
 ﻿using RecruitmentAppWebForm.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,15 +13,16 @@ namespace RecruitmentAppWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Models.User.checkUserLogin(this.Page);
-            companyList.DataSource = CompanyDB.getAllCompanies();
-            companyList.DataBind();
-            industry.DataSource = this.getIndustries();
-            industry.DataBind();
-            jobLevel.DataSource = this.getJobLevels();
-            jobLevel.DataBind();
-            //if (!this.IsPostBack)
-            //    this.companyText.Enabled = false;
+            if (!IsPostBack)
+            {
+                Models.User.checkUserLogin(this.Page);
+                companyList.DataSource = CompanyDB.getAllCompanies();
+                companyList.DataBind();
+                industry.DataSource = this.getIndustries();
+                industry.DataBind();
+                jobLevel.DataSource = this.getJobLevels();
+                jobLevel.DataBind();
+            }
         }
 
         protected List<string> getIndustries()
@@ -37,6 +39,7 @@ namespace RecruitmentAppWebForm
             industries.Add("Accommodation and Food Services");
             industries.Add("Transport, Postal and Warehousing");
             industries.Add("Information Media and Telecommunications");
+            industries.Add("Information Technology");
             industries.Add("Financial and Insurance Services");
             industries.Add("Rental, Hiring and Real Estate Services");
             industries.Add("Professional, Scientific, Technical Services");
@@ -79,7 +82,26 @@ namespace RecruitmentAppWebForm
 
         protected void registerCompanyBtn_Click(object sender, EventArgs e)
         {
-            JobsDB.enterJob(Convert.ToInt32(companyList.Text), position.Text, industry.Text, Convert.ToInt32(salary_min.Text), Convert.ToInt32(salary_max.Text), jobLevel.Text, description.Text, responsibility.Text.Trim(), qualification.Text.Trim().Replace(" ", ""), DateTime.Today);
+            string industryString = industry.Text;
+            string level = jobLevel.Text;
+
+            try
+            {
+                JobsDB.enterJob(Convert.ToInt32(companyList.Text), position.Text, industry.Text, Convert.ToInt32(salary_min.Text), Convert.ToInt32(salary_max.Text), jobLevel.Text, description.Text, responsibility.Text.Trim(), qualification.Text.Trim().Replace(" ", ""), DateTime.Today);
+                confirmationMsg.Text = "Job registered";
+                companyList.SelectedIndex = 0;
+                position.Text = "";
+                industry.SelectedIndex = 0;
+                salary_min.Text = "";
+                salary_max.Text = "";
+                jobLevel.SelectedIndex = 0;
+                description.Text = "";
+                responsibility.Text = "";
+                qualification.Text = "";
+            } catch (SqlException sqlEx)
+            {
+                sqlErrorMsg.Text = sqlEx.ToString();
+            }
         }
     }
 }
