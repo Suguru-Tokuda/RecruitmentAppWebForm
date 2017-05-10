@@ -4,7 +4,7 @@
 
     <div class="form-group">
         <div class="row">
-            <label class="col-md-1" style="color: lightgray">Job title:</label>
+            <label id="lblTitle" class="col-md-1" style="color: lightgray">Job title:</label>
             <div class="col-md-3">
                 <asp:DropDownList CssClass="form-control" AutoPostBack="true" ID="jobDropDown" DataTextField="position" DataValueField="job_id" runat="server" OnSelectedIndexChanged="jobDropDown_SelectedIndexChanged" />
             </div>
@@ -30,11 +30,21 @@
         <div class="col-md-4">
             <asp:DetailsView runat="server" ID="candidateDetails" BackColor="#d4d4d4" CssClass="table" AutoGenerateRows="false" EnableViewState="false">
                 <HeaderTemplate>
-                    <lable>Selected Applicant</lable>
+                    <label>Selected Applicant</label>
                 </HeaderTemplate>
+
                 <FooterTemplate>
-                    <asp:Button runat="server" CssClass="btn btn-primary" Text="Select for Interview" />
-                    <p>Date: <input type="text"class="hasDatepicker"></p>
+                    <div>
+                        <asp:CheckBox ID="chkInterview" runat="server" />
+
+                        <label for="chkInteview">Select For Interview</label>
+
+                    </div>
+                    <div class="col-md-4">
+                         Date:  <input type="text" id="datepicker1">
+                        <asp:Button ID="btnSelect" runat="server" CausesValidation="False"  OnClientClick="btnSelect_Click"  CssClass="btn btn-primary" Text="Select for Interview" />
+                    </div>
+
                 </FooterTemplate>
                 <FooterStyle BackColor="#1C5E55" />
                 <HeaderStyle BackColor="#1C5E55" Font-Bold="true" ForeColor="lightgray" />

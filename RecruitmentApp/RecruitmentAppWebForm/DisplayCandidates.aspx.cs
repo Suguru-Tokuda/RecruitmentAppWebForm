@@ -55,5 +55,27 @@ namespace RecruitmentAppWebForm
             applicantList.DataBind();
 
         }
+
+        protected void chkInterview_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Web.UI.WebControls.CheckBox check = (System.Web.UI.WebControls.CheckBox)Page.FindControl("chkInterview");
+            if (check.Checked)
+            {
+               ((Button)Page.FindControl("btnSelect")).Enabled = true;
+
+            }
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            System.Web.UI.WebControls.CheckBox check = (System.Web.UI.WebControls.CheckBox)Page.FindControl("chkInterview");
+            if (check.Checked)
+            {
+                string date = Page.FindControl("datepicker1").ToString();
+                DateTime loadedDate = DateTime.ParseExact(date, "mm/dd/yy", null);
+                ((Button)Page.FindControl("btnSelect")).Enabled = true;
+
+            }
+        }
     }
 }
