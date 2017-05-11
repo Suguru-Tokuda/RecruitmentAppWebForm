@@ -16,6 +16,11 @@ namespace RecruitmentAppWebForm.Models
         public static void uploadResume(FileUpload resumeData, int applicant_id)
         {
             string title = Path.GetFileName(resumeData.PostedFile.FileName);
+            if (title.IndexOf(".docx") != -1)
+            {
+                title = title.Replace(".docx", "");
+                title += ".docx";
+            }
             string contentType = resumeData.PostedFile.ContentType;
             string ext = Path.GetExtension(title);
             string fileType = "application/vnd.ms-word";
