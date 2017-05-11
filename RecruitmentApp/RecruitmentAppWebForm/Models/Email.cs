@@ -8,13 +8,12 @@ namespace RecruitmentAppWebForm.Models
 {
     public class Email
     {
-        public static void sendProductRegistrationEmail(int applicantID, int jobID)
-
+        public static void sendProductRegistrationEmail(int applicant_id, int job_id)
         {
-            string jobname = JobsDB.getJobTitle(jobID);
+            string jobname = JobsDB.getJobTitle(job_id);
             MailAddress from = new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
-            MailMessage msg = new MailMessage(from.ToString(), ApplicantDB.getApplicant(applicantID).email, "Job Application Confirmation - "+ jobID,
-                "Thank you for applying for the position: " + JobsDB.getJobTitle(jobID) + " \nYou will be notified of any future updates.\n\nThank you,\n Recruitment team");
+            MailMessage msg = new MailMessage(from.ToString(), ApplicantDB.getApplicant(applicant_id).email, "Job Application Confirmation - "+ job_id,
+                "Thank you for applying for the position: " + JobsDB.getJobTitle(job_id) + " \nYou will be notified of any future updates.\n\nThank you,\n Recruitment team");
 
             SmtpClient client = new SmtpClient("smtp.gmail.com");
             msg.Sender= new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
@@ -26,5 +25,25 @@ namespace RecruitmentAppWebForm.Models
             client.EnableSsl = true;//using https:// instead of http:
             client.Send(msg);
         }
+
+        public static void sendOfferEmail(int applicant_id, int job_id)
+        {
+            string jobname = JobsDB.getJobTitle(job_id);
+            string companyName = JobsDB.getCompanyName(job_id);
+            MailAddress from = new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
+            MailMessage msg = new MailMessage(from.ToString(), ApplicantDB.getApplicant(applicant_id).email, "Job Offer - " + job_id,
+                "Congratuations! You recieved a job offer for " + JobsDB.getJobTitle(job_id) + "!!!! \nYou will be notified from the employer for further details from " + companyName + "!!\n\nThank you,\n Recruitment team");
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            msg.Sender = new MailAddress("recruitmentapp2017@gmail.com", "Recruiters Network");
+            client.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = "recruitmentapp2017@gmail.com",
+                Password = "!RecruitmentApp17"
+            };
+            client.EnableSsl = true;//using https:// instead of http:
+            client.Send(msg);
+        }
+
+
     }
 }

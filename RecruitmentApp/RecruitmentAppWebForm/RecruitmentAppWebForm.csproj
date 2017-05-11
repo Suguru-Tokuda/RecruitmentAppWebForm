@@ -253,6 +253,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="ExtendOffer.aspx" />
     <Content Include="Images\pic.jpg" />
     <Content Include="Images\sampleResume.jpg" />
     <Content Include="Content\Site.css" />
@@ -450,6 +451,13 @@
     </Compile>
     <Compile Include="DisplayCandidates.aspx.designer.cs">
       <DependentUpon>DisplayCandidates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendOffer.aspx.cs">
+      <DependentUpon>ExtendOffer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExtendOffer.aspx.designer.cs">
+      <DependentUpon>ExtendOffer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

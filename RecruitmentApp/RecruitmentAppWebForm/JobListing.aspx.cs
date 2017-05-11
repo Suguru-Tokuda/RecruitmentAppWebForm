@@ -91,8 +91,13 @@ namespace RecruitmentAppWebForm
 
         protected void btnApply_Click(object sender, EventArgs e)
         {
-
-            bool status = (bool)Session["loggedIn"];
+            bool status = false;
+            try
+            {
+                status = (bool)Session["loggedIn"];
+            } catch (NullReferenceException nullex)
+            {
+            }
 
 
             if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -102,6 +107,7 @@ namespace RecruitmentAppWebForm
             }
             if (status == false)
             {
+                Session["applicationErrMsg"] = "Log in to apply";
                 Response.Redirect("/Account/Login.aspx");
                 return;
             }

@@ -20,8 +20,8 @@ namespace RecruitmentAppWebForm
             string resumeName = null;
             int applicant_id = 0;
 
-            if (!IsPostBack)
-            {
+            //if (!IsPostBack)
+            //{
                 applicant_id = (int)HttpContext.Current.Session["applicant_id"];
                 try
                 {
@@ -45,20 +45,25 @@ namespace RecruitmentAppWebForm
                 {
                     Response.Redirect("/Default.aspx", false);
                 }
-            }
-            applicant_id = (int)HttpContext.Current.Session["applicant_id"];
-            resumeName = ResumesDB.getResumeName(applicant_id);
+            //}
+
+
+
+
+
+            //applicant_id = (int)HttpContext.Current.Session["applicant_id"];
+            //resumeName = ResumesDB.getResumeName(applicant_id);
         }
 
         protected void resumeUploadBtn_Click(object sender, EventArgs e)
         {
-            string st = "SuguruTokudaResume.docx.docx";
-            st.Replace(".docx", "");
             try
             {
                 int applicant_id = (int)HttpContext.Current.Session["applicant_id"];
                 ResumesDB.uploadResume(resumeData, applicant_id);
                 this.Page_Load(sender, e);
+                msg.Text = "Resume uploaded";
+                msg.ForeColor = System.Drawing.Color.Green;
             } catch (SqlException sqlEx)
             {
                 msg.Text = "There was a Database error";

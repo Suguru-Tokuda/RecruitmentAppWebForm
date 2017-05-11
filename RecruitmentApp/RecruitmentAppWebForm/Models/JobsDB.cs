@@ -262,11 +262,49 @@ namespace RecruitmentAppWebForm.Models
                     cmd.Parameters.AddWithValue("@responsibility", responsibility);
                     cmd.Parameters.AddWithValue("@qualification", qualification);
                     cmd.Parameters.AddWithValue("@posting_date", posting_date);
-                    cmd.Parameters.AddWithValue("@filled", 0);
+                    cmd.Parameters.AddWithValue("@filled", 1);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
             }
         }
+
+        public static string getCompanyName(int job_id)
+        {
+            string retVal = null;
+            string sql = "SELECT c.company_name FROM jobs AS j JOIN companies AS c ON c.company_id = j.company_id WHERE job_id = @job_id";
+
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@job_id", job_id);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        retVal = dr["company_name"].ToString();
+                    }
+                    dr.Close();
+                }
+            }
+            return retVal;
+        }
+
+        public static void closeJob(int job_id)
+        {
+            string sql = "UPDATE jobs SET filled = 0 WHERE job_id = @job_id";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@job_id", job_id);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+        }
+
     }
 }

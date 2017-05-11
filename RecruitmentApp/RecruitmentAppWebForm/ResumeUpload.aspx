@@ -12,7 +12,7 @@
         <div class="form-group">
             <%if (resumeExists.Text.Equals("yes"))
                 { %>
-            <asp:Button runat="server" ID="updateResumeBtn" CssClass="btn btn-primary" Text="Update" OnClick="updateResumeBtn_Click" />
+            <asp:Button runat="server" ID="updateResumeBtn" CssClass="btn btn-primary" Text="Update" OnClick="updateResumeBtn_Click" ValidationGroup="resumeFileUpLoad" />
             <div class="form-group">
                 <label style="color: white">Current resume: </label>
                 <asp:Label runat="server" Style="color: white" />
