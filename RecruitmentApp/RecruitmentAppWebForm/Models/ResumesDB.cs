@@ -24,7 +24,7 @@ namespace RecruitmentAppWebForm.Models
             BinaryReader br = new BinaryReader(fs);
             Byte[] bytes = br.ReadBytes((Int32)fs.Length);
 
-                    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                    using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
                     {
                         string query = "INSERT INTO resumes (applicant_id, title, data) VALUES (@applicant_id, @title, @data)";
 
@@ -39,6 +39,38 @@ namespace RecruitmentAppWebForm.Models
                             con.Close();
                         }
                     }
+        }
+
+        public static void updateResume(FileUpload resumeData, int applicant_id)
+        {
+            string title = Path.GetFileName(resumeData.PostedFile.FileName);
+            if (title.IndexOf(".docx") != -1)
+                {
+                title = title.Replace(".docx", "");
+                title += ".docx";
+                }
+            string contentType = resumeData.PostedFile.ContentType;
+            string ext = Path.GetExtension(title);
+            string fileType = "application/vnd.ms-word";
+
+            Stream fs = resumeData.PostedFile.InputStream;
+            BinaryReader br = new BinaryReader(fs);
+            Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                string query = "UPDATE resumes SET data = @data, title = @title WHERE applicant_id = @applicant_id";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.Add("@data", SqlDbType.Binary).Value = bytes;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
 
 
@@ -93,6 +125,22 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
 
+        }
+
+        public static void deleteResume(int applicant_id)
+        {
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                string query = "DELETE resumes WHERE applicant_id = @applicant_id";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
 
     }

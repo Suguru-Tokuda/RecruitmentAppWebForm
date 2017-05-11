@@ -22,22 +22,22 @@ namespace RecruitmentAppWebForm {
         protected global::System.Web.UI.WebControls.FileUpload resumeData;
         
         /// <summary>
-        /// resumeUploadBtn control.
+        /// resumeExists control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button resumeUploadBtn;
+        protected global::System.Web.UI.WebControls.Label resumeExists;
         
         /// <summary>
-        /// currentResume control.
+        /// updateResumeBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton currentResume;
+        protected global::System.Web.UI.WebControls.Button updateResumeBtn;
         
         /// <summary>
         /// currentResumeName control.
@@ -47,5 +47,23 @@ namespace RecruitmentAppWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label currentResumeName;
+        
+        /// <summary>
+        /// resumeUploadBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button resumeUploadBtn;
+        
+        /// <summary>
+        /// msg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label msg;
     }
 }
