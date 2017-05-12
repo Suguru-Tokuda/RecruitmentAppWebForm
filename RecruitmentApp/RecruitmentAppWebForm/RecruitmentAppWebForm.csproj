@@ -353,6 +353,7 @@
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -389,6 +390,7 @@
     </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -447,7 +449,6 @@
     </Compile>
     <Compile Include="DisplayCandidates.aspx.cs">
       <DependentUpon>DisplayCandidates.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DisplayCandidates.aspx.designer.cs">
       <DependentUpon>DisplayCandidates.aspx</DependentUpon>
@@ -486,6 +487,7 @@
     </Compile>
     <Compile Include="RegisterJob.aspx.cs">
       <DependentUpon>RegisterJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RegisterJob.aspx.designer.cs">
       <DependentUpon>RegisterJob.aspx</DependentUpon>
