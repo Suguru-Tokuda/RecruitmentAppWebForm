@@ -47,6 +47,10 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
+        public static void updateApplication(int job_id,int application_id)
+        {
+
+        }
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static List<Applicant> getApplicants(int job_id)
         {
