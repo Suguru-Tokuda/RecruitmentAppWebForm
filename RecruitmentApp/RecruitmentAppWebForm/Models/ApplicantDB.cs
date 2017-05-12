@@ -57,13 +57,41 @@ namespace RecruitmentAppWebForm.Models
 
             List<Applicant> retVal = new List<Applicant>();
 
-            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = " + job_id;
+            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = @job_id";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    Applicant applicant;
+                    cmd.Parameters.AddWithValue("@job_id", job_id);
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();                    
+                    while (dr.Read())
+                    {
+                        applicant = new Applicant();
+                        applicant.first_name = dr["first_name"].ToString();
+                        applicant.last_name = dr["last_name"].ToString();
+                        applicant.applicant_id = Convert.ToInt32(dr["applicant_id"].ToString());
+                        retVal.Add(applicant);
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static List<Applicant> getApplicantsForExtendOffer(int job_id)
+        {
+            List<Applicant> retVal = new List<Applicant>();
+
+            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = @job_id AND ap.interview_date IS NOT NULL";
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     Applicant applicant;
                     con.Open();
+                    cmd.Parameters.AddWithValue("@job_id", job_id);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
@@ -77,6 +105,7 @@ namespace RecruitmentAppWebForm.Models
             }
             return retVal;
         }
+
 
         public static int getApplicantIdByEmail(string email)
         {

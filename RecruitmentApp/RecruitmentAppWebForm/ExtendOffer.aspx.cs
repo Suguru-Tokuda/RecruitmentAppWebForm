@@ -18,7 +18,7 @@ namespace RecruitmentAppWebForm
                 jobDropDown.DataSource = JobsDB.getAllOpenJobs();
                 jobDropDown.DataBind();
                 jobDropDown.SelectedIndex = 0;
-                applicantList.DataSource = ApplicantDB.getApplicants(Convert.ToInt32(jobDropDown.SelectedValue));
+                applicantList.DataSource = ApplicantDB.getApplicantsForExtendOffer(Convert.ToInt32(jobDropDown.SelectedValue));
                 Session["job_id"] = jobDropDown.SelectedValue;
                 applicantList.DataBind();
                 offerBtn.Visible = false;
