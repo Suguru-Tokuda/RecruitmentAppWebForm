@@ -27,6 +27,25 @@
             </asp:DataList>
         </div>
 
+        <%--<div class="col-md-12">
+            <table id="Table1" style="height: 200px; width: 690px;" runat="server">
+                <tr>
+                    <td>
+                       <asp:CheckBox ID="chkInterview" runat="server" />
+
+                        <label for="chkInteview">Select For Interview</label>
+
+                    </td>
+                    <td>Date: 
+            <input type="text" id="datepicker1">
+
+                        <asp:Button ID="btnSelect" runat="server" CausesValidation="False" OnClick="btnSelect_Click" CssClass="btn btn-primary" Text="Select for Interview" />
+                    </td>
+                </tr>
+            </table>
+        </div>--%>
+
+
         <div class="col-md-4">
             <asp:DetailsView runat="server" ID="candidateDetails" BackColor="#d4d4d4" CssClass="table" AutoGenerateRows="false" EnableViewState="false">
                 <HeaderTemplate>
@@ -34,7 +53,8 @@
                 </HeaderTemplate>
 
                 <FooterTemplate>
-                    <div>
+                    <%--<div>
+                        <asp:Button runat="server" id="btn2" onclick="btn2_Click" Text="Button"></asp:Button>
                         <asp:CheckBox ID="chkInterview" runat="server" />
 
                         <label for="chkInteview">Select For Interview</label>
@@ -42,9 +62,9 @@
                     </div>
                     <div class="col-md-4">
                          Date:  <input type="text" id="datepicker1">
-                        <asp:Button ID="btnSelect" runat="server" CausesValidation="False"  OnClientClick="btnSelect_Click"  CssClass="btn btn-primary" Text="Select for Interview" />
-                    </div>
-
+                        
+                        <asp:Button ID="btnSelect" runat="server" CausesValidation="False"  OnClick="btnSelect_Click"  CssClass="btn btn-primary" Text="Select for Interview" />
+                    </div>--%>
                 </FooterTemplate>
                 <FooterStyle BackColor="#1C5E55" />
                 <HeaderStyle BackColor="#1C5E55" Font-Bold="true" ForeColor="lightgray" />
@@ -112,11 +132,44 @@
 
         </div>
 
-        <div class="">
+        <%--        <div class="">
             <object />
             <iframe src="TestIframe.aspx" id="wordResume" runat="server" style="width: 40%; height: 400px"></iframe>
-        </div>
+        </div>--%>
 
+        <%--        <div class="col-md-12">
+            <table id="Table1" style="height: 200px; width: 690px;" runat="server">
+                <tr>
+                    <td>
+                        <asp:CheckBox ID="chkInterview" runat="server" />
+
+                        <label for="chkInteview">Select For Interview</label>
+
+                    </td>
+                    <td>Date: 
+            <input type="text" id="datepicker1">
+
+                        <asp:Button ID="btnSelect" runat="server" CausesValidation="False" OnClick="btnSelect_Click" CssClass="btn btn-primary" Text="Select for Interview" />
+                    </td>
+                </tr>
+
+            </table>
+        </div>--%>
+
+        <div class="col-md-3">
+        <asp:Panel Visible="false" ID="Panel1" BackColor="White" runat="server">
+            <div>
+            <asp:CheckBox ID="chkInterview" OnCheckedChanged="chkInterview_CheckedChanged" runat="server" />
+
+            <label for="chkInteview">Select For Interview</label></div>
+            <div>
+               <label for="txtCalendar">Date: </label>
+                <asp:TextBox ID="txtCalendar" CssClass="textbox datepicker1" runat="server"></asp:TextBox>
+                
+
+            <asp:Button ID="btnSelect" runat="server" OnClick="btnSelect_Click" CssClass="btn btn-primary" Text="Select for Interview" />
+            </div>
+        </asp:Panel></div>
 
 
 

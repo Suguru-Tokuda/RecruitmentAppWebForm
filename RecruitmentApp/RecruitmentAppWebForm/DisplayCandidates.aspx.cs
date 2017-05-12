@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Office.Interop.Word;
+using System.Globalization;
 
 namespace RecruitmentAppWebForm
 {
@@ -21,6 +22,7 @@ namespace RecruitmentAppWebForm
 
                 jobDropDown.DataSource = JobsDB.getAllOpenJobs();
                 jobDropDown.DataBind();
+                Panel1.Visible = false;
             }
         }
 
@@ -36,6 +38,7 @@ namespace RecruitmentAppWebForm
             list.Add(ApplicantDB.getApplicant(applicantID));
             candidateDetails.DataSource = list;
             candidateDetails.DataBind();
+            Panel1.Visible = true;
         }
 
         private void showResume()
@@ -53,29 +56,28 @@ namespace RecruitmentAppWebForm
         {
             applicantList.DataSource = ApplicantDB.getApplicants(Convert.ToInt32(jobDropDown.SelectedValue));
             applicantList.DataBind();
+            Panel1.Visible = false;
 
         }
 
         protected void chkInterview_CheckedChanged(object sender, EventArgs e)
         {
-            System.Web.UI.WebControls.CheckBox check = (System.Web.UI.WebControls.CheckBox)Page.FindControl("chkInterview");
-            if (check.Checked)
-            {
-               ((Button)Page.FindControl("btnSelect")).Enabled = true;
-
-            }
+            
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             System.Web.UI.WebControls.CheckBox check = (System.Web.UI.WebControls.CheckBox)Page.FindControl("chkInterview");
-            if (check.Checked)
+            if (chkInterview.Checked)
             {
-                string date = Page.FindControl("datepicker1").ToString();
-                DateTime loadedDate = DateTime.ParseExact(date, "mm/dd/yy", null);
-                ((Button)Page.FindControl("btnSelect")).Enabled = true;
+                
+                string  date = txtCalendar.Text;
+                 DateTime loadedDate = DateTime.ParseExact(date, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+   
 
             }
         }
+
+
     }
 }

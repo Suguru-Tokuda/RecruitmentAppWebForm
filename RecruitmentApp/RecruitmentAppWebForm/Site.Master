@@ -51,7 +51,7 @@
         </asp:ScriptManager>
             <script type="text/javascript">
         $(function () {
-            $("#datepicker1").datepicker({
+            $(".datepicker1").datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
                 changeYear: true,
