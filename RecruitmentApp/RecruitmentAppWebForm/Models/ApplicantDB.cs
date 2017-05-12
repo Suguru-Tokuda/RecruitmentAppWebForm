@@ -47,9 +47,22 @@ namespace RecruitmentAppWebForm.Models
             return retVal;
         }
 
-        public static void updateApplication(int job_id,int application_id)
+        public static void updateApplication(int job_id,int applicant_id,DateTime date)
         {
+            string sql = "UPDATE applications SET interview_date = @interview_date WHERE job_id=@job_id AND applicant_id=@applicant_id";
+            using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@job_id", job_id);
+                    cmd.Parameters.AddWithValue("@applicant_id", applicant_id);
+                    cmd.Parameters.AddWithValue("@interview_date", date);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
 
+                }
+            }
         }
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static List<Applicant> getApplicants(int job_id)
@@ -57,7 +70,7 @@ namespace RecruitmentAppWebForm.Models
 
             List<Applicant> retVal = new List<Applicant>();
 
-            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = @job_id";
+            string sql = "SELECT * FROM applicants AS a JOIN applications AS ap ON a.applicant_id = ap.applicant_id WHERE job_id = @job_id AND interview_date IS NULL";
             using (SqlConnection con = new SqlConnection(DBConnection.getConnection()))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))

@@ -50,7 +50,7 @@ namespace RecruitmentAppWebForm
         protected void applicantList_SelectedIndexChanged(object sender, EventArgs e)
         {
             applicantID = Convert.ToInt32(((System.Web.UI.WebControls.Label)applicantList.Items[applicantList.SelectedIndex].FindControl("applicantID")).Text);
-            Session["applicant_id_for_offer"] = applicantID;
+            Session["applicant_id_for_interview"] = applicantID;
             this.showApplicantDetails();
             Panel1.Visible = true;
         }
@@ -77,8 +77,16 @@ namespace RecruitmentAppWebForm
                 
                 string  date = txtCalendar.Text;
                  DateTime loadedDate = DateTime.ParseExact(date, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                int applicant_id = Convert.ToInt32(HttpContext.Current.Session["applicant_id_for_offer"]);
+                int applicant_id = Convert.ToInt32(HttpContext.Current.Session["applicant_id_for_interview"]);
                 int job_id = Convert.ToInt32(HttpContext.Current.Session["job_id"]);
+                ApplicantDB.updateApplication(job_id, applicant_id, loadedDate);
+                Models.Email.sendInterviewEmail(applicant_id, job_id, loadedDate);
+                jobDropDown.DataSource = JobsDB.getAllOpenJobs();
+                jobDropDown.DataBind();
+                jobDropDown.SelectedIndex = 0;
+                applicantList.DataSource = ApplicantDB.getApplicants(Convert.ToInt32(jobDropDown.SelectedValue));
+                applicantList.DataBind();
+                Panel1.Visible = false;
 
 
 
